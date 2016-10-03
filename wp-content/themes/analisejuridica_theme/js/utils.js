@@ -53,7 +53,7 @@ jQuery(function($) {
 	$('.slide_link').each(function() {
 		$(this).click( function(e){
 			var slide_order = $(this).attr('data-slideorder');
-			console.log(slide_order);
+			// console.log(slide_order);
 			highlight_slider.goToSlide(slide_order);
 		})
 	});
@@ -71,13 +71,12 @@ jQuery(function($) {
 			return false;
 		});
 	});
-	if($('.videodestaque')){
+	if( $('.videodestaque') ){
 		var video_id = $('.videodestaque').attr('data-videoid');
 		var container_id = $('.videodestaque').attr('data-videocntt');
 		var embed_code = '<iframe src="http://www.youtube.com/embed/'+ video_id +'?rel=0&modestbranding=1&showinfo=0&controls=1&theme=light"  frameborder="0" allowfullscreen ></iframe>';
 
 	    $('#' + container_id + ' .video_cntt').html(embed_code);
-		return false;
 	}
 
 	// $(".bxlider_link").click(function() {
@@ -166,9 +165,17 @@ jQuery(function($) {
 		$(this).parent().attr( 'title', img_description );
 	});
 
+    $( "#menu-primary" ).menu();
+
 	// Menu Dropdown 
+	// $( ".menu_link" ).mouseenter(function() {
+	// 	$( ".menu_cntt" ).toggleClass("active");
+	// });
 	$( ".menu_link" ).click(function() {
 		$( ".menu_cntt" ).toggleClass("active");
+	});
+	$('.menu_cntt').mouseleave(function() {
+		$( ".menu_cntt" ).removeClass("active");
 	});
 
 	// Hover effect search form

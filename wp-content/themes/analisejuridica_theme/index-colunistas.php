@@ -9,15 +9,22 @@
 		$last_posts_list = array();
 
 		$authors = get_users( $args  );
+
+		
 		foreach ($authors as $user) {
 			
 			$userid = $user->ID;
-			
+
+			$cat_obj = get_category_by_slug( 'colunistas' );
+			$cat_id = $cat_obj->term_id;
+			$cat_link = get_category_link($cat_id);
+
 			wp_reset_postdata();
 
 			$args = array( 
 				'numberposts' => 1,
-				'author'		 => $userid
+				'author'		 => $userid,
+				'cat'		 => $cat_id
 			);
 
 			$last_post = get_posts( $args );
@@ -43,7 +50,8 @@
 
 			$args = array( 
 				'numberposts' => 1,
-				'author'		 => $userid
+				'author'		=> $userid,
+				'cat'		 => $cat_id
 			);
 
 			$last_post = get_posts( $args );
@@ -104,9 +112,9 @@
 	?>
 	<?php 
 		
-		$cat_obj = get_category_by_slug( 'colunistas' );
-		$cat_id = $cat_obj->term_id;
-		$cat_link = get_category_link($cat_id);
+		// $cat_obj = get_category_by_slug( 'colunistas' );
+		// $cat_id = $cat_obj->term_id;
+		// $cat_link = get_category_link($cat_id);
 	?>
 		<li class="author-item last_slide">
 			<div class="slide_cntt">

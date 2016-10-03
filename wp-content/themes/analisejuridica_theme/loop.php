@@ -12,7 +12,7 @@
 			<div class="text">
 				<h3 class="title"><?php the_title(); ?></h3>
 				<div class="excpt">
-					<?php echo get_special_excerpt(100); ?>
+					<?php echo get_special_excerpt(250); ?>...
 
 				</div>
 			</div>

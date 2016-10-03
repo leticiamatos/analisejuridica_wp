@@ -57,3 +57,7 @@
 ?>
 
 </ul>
+<?php 
+	$allposts_permalink = get_permalink(get_page_by_path('lista-completa-de-materias')->ID);
+?>
+<a class="allposts" href="<?php echo $allposts_permalink; ?> ">lista completa de matérias</a>

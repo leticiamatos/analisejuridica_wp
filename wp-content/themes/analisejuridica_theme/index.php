@@ -13,7 +13,7 @@
 ?>
 				<h3 class="block_title"><a href="<?php echo $cat_link; ?>">Destaques</a></h3>
 				<div class="col2-3 ">
-					<div class="highlight_wpr">
+					<div class="highlight_slide_wpr">
 						<?php get_template_part('index', 'destaqueslide'); ?>
 					</div>
 				</div>

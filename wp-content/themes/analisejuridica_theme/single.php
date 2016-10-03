@@ -11,13 +11,11 @@
 		<section class="block_wpr main_cntt">
 			<div class="block_cntt">
 
-<?php 
-	if ( has_post_format( 'video' )) {
-	  echo 'this is the video format';
-	}
-?>
-
+<?php if ( has_post_format( 'video' )) : ?>
+				<div class="post-list post-video">
+<?php else: ?>
 				<div class="col3-4 post-list">
+<?php endif; ?>
 	
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -39,20 +37,20 @@
 							<?php the_author_posts_link(); ?>, para o Análise Jurídica
 						</p>
 
-					<?php
-						$video_youtube_id = htmlspecialchars(get_post_meta(get_the_ID(), 'video_youtube_id', true)); 
-						if($video_youtube_id):
-					?>
-						<div class="video_wpr">
-							<iframe src="http://www.youtube.com/embed/<?php echo $video_youtube_id; ?>?rel=0&modestbranding=1&showinfo=0&controls=1&theme=light"  frameborder="0" allowfullscreen ></iframe>
-						</div>
-					<?php else: ?>
-						<figure class="post_img">
-							<?php if ( has_post_thumbnail()) : ?>
-								<?php the_post_thumbnail();  ?>
-							<?php endif; ?>
-						</figure>
-					<?php endif; ?>
+						<?php
+							$video_youtube_id = htmlspecialchars(get_post_meta(get_the_ID(), 'video_youtube_id', true)); 
+							if($video_youtube_id):
+						?>
+							<div class="video_wpr">
+								<iframe src="http://www.youtube.com/embed/<?php echo $video_youtube_id; ?>?rel=0&modestbranding=1&showinfo=0&controls=1&theme=light"  frameborder="0" allowfullscreen ></iframe>
+							</div>
+						<?php else: ?>
+							<figure class="post_img">
+								<?php if ( has_post_thumbnail()) : ?>
+									<?php the_post_thumbnail();  ?>
+								<?php endif; ?>
+							</figure>
+						<?php endif; ?>
 
 						<div class="text the_content">
 							<?php the_content(); // Dynamic Content ?>
@@ -82,8 +80,11 @@
 					</article>
 
 				</div>
+				<?php if ( has_post_format( 'video' )) : ?>
+				<?php else: ?>
+					<?php get_sidebar(); ?>
+				<?php endif; ?>
 
-				<?php get_sidebar(); ?>
 			</div>
 		</section>
 
