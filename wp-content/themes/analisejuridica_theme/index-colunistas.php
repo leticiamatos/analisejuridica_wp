@@ -111,23 +111,22 @@
 				<input type="hidden" value="<?php echo $username; ?>">
 				<div class="slide_cntt">
 					<?php 
-						// $gravatar_url = 'http://www.gravatar.com/avatar/'. md5( strtolower( trim( the_author_meta('email') ) ) ). '?s=235&d=retro';
-						// if (get_wp_user_avatar()){
-						// 	$gravatar_url = get_wp_user_avatar();
-						// }else{
-						// 	$gravatar_url = get_the_author_meta('user_url');
-						// }
-
-						if(!$gravatar_url){
-							$gravatar_url = '<img src="http://www.gravatar.com/avatar/'. md5( strtolower( trim( get_the_author_meta('email') ) ) ). '?s=235&d=retro" />';
-	
-							if(!$gravatar_url){
-								$gravatar_url = '<img src="https://www.gravatar.com/avatar/4?f=y&s=235&d=mm" />'; 
-							}
+						$gravatar_url = 'http://www.gravatar.com/avatar/'. md5( strtolower( trim( get_the_author_meta('email') ) ) ). '?s=235&d=retro';
+						if (get_wp_user_avatar()){
+							$gravatar_url = get_wp_user_avatar();
+						}else{
+							$gravatar_url = '<img src="'.get_the_author_meta('user_url').' />';
 						}
+
+						// if(!$gravatar_url){
+						// 	$gravatar_url = '<img src="http://www.gravatar.com/avatar/'. md5( strtolower( trim( get_the_author_meta('email') ) ) ). '?s=235&d=retro" />';
+	
+						// 	if(!$gravatar_url){
+						// 		$gravatar_url = '<img src="https://www.gravatar.com/avatar/4?f=y&s=235&d=mm" />'; 
+						// 	}
+						// }
 					?>
 
-					<!-- <p class="photo"><img src="<?php //echo $gravatar_url; ?>"></p> -->
 					<p class="photo"><?php echo $gravatar_url; ?></p>
 					<h3 class="title"><?php //echo get_the_author(); ?> </h3>
 					<p class="despt">

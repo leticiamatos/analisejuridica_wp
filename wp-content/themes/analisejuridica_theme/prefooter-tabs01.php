@@ -91,7 +91,7 @@
     </ul>
   </div>
   <div id="tabs-3">
-       <?php 
+     <?php 
   
       $cat_obj = get_category_by_slug( 'artigos' );
       $cat_id = $cat_obj->term_id;

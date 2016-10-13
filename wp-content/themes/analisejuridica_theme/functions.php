@@ -708,6 +708,7 @@ function is_parent_category($id){
         return $id;
     }else{
         $parent_id = $parent->cat_ID;
+        $parent_id = false;
     
         return $parent_id;
     }
