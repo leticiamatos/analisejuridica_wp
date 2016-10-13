@@ -124,7 +124,7 @@
 									</a>
 								</h1>
 							</div>
-							<div class="col1-3">
+							<div class="col1-3 col_search">
 								<span>&nbsp;</span>
 								<?php get_template_part('searchform'); ?>
 							</div>

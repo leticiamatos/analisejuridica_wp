@@ -24,7 +24,9 @@
 ?>
 			<div class="col1-4">
 				<!-- Advertising widget area 06 -->
-			  	<?php get_template_part('advertising', 'area6'); ?>
+			  	<div class="responsive_wpr">
+				  	<?php get_template_part('advertising', 'area6'); ?>
+			  	</div>
 			</div>
 <?php
 			endif;

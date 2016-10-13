@@ -26,7 +26,7 @@ jQuery(function($) {
 	});
 
 	$('.colunistas_slider').bxSlider({
-		minSlides: 2,
+		minSlides: 1,
 		maxSlides: 6,
 		slideWidth: 225,
 		speed: 2000,
@@ -68,6 +68,7 @@ jQuery(function($) {
 			var post_link = $(this).attr('data-post-href');
 
 			var embed_code = '<iframe src="http://www.youtube.com/embed/'+ video_id +'?rel=0&modestbranding=1&showinfo=0&controls=1&theme=light"  frameborder="0" allowfullscreen ></iframe>';
+			// var embed_code = 'video';
 
 		    $('#' + container_id + ' .video_cntt').html(embed_code);
 		    // console.log(video_id);
@@ -90,6 +91,7 @@ jQuery(function($) {
 		var video_id = $('.videodestaque').attr('data-videoid');
 		var container_id = $('.videodestaque').attr('data-videocntt');
 		var embed_code = '<iframe src="http://www.youtube.com/embed/'+ video_id +'?rel=0&modestbranding=1&showinfo=0&controls=1&theme=light"  frameborder="0" allowfullscreen ></iframe>';
+		// var embed_code = 'videohere!';
 
 	    $('#' + container_id + ' .video_cntt').html(embed_code);
 	}

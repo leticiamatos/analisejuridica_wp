@@ -1,4 +1,25 @@
-<?php get_header(); ?>
+<?php 
+	get_header(); 
+	$search_query = get_search_query();
+
+	// Only from cat
+	// $catid = 9;
+
+	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+
+	global $wp_query;
+
+	query_posts(array_merge(
+		array(
+			'post_type' => 'post',
+			//'cat'		 => $catid,
+	  		'paged'          => $paged
+  		),
+		$wp_query->query
+	));
+?>
+
+
 
 	<main role="main">
 
@@ -20,6 +41,7 @@
 				</div>
 
 				<?php get_sidebar(); ?>
+				<span class="clear"></span>
 			</div>
 		</section>
 	</main>

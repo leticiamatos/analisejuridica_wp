@@ -37,6 +37,7 @@
 						  		</a>
 						</div>
 					</div>
+					<span class="clear"></span>
 				</div>
 			</footer>
 
