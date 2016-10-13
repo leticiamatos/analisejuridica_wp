@@ -15,7 +15,7 @@
 	?>
 <div class="bxslider_wpr bxslider_02">
 
-	<ul class="highlight highlight_wpr colunistas_slider">
+	<ul class="highlight highlight_wpr colunistas_slider debates_slider">
 	
 	<?php
 			$n = 0;
@@ -24,11 +24,8 @@
 					<li class="author-item">
 						<div class="slide_cntt">
 						<p class="photo">
-							<?php if ( has_post_thumbnail()) : ?>
-								<?php the_post_thumbnail();  ?>
-							<?php else: ?>
-								<img src="<?php echo get_template_directory_uri(); ?>/img/thumbnail-no.png">
-							<?php endif; ?>
+							<?php get_template_part('thumbnail'); ?>
+
 						</p>
 						<div class="text">
 							<?php //echo the_category_list(); ?>

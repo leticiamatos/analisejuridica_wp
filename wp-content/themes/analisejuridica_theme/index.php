@@ -75,7 +75,14 @@
 
 				<h3 class="block_title"><a href="<?php echo $cat_link; ?>">Vídeos</a></h3>
 				<div class="col2-3">
+					<div class="video_msg_wpr">
+						<p class="video_msg">
+							<a href="#" id="video_more_link">Clique aqui e veja mais sobre este vídeo</a>
+							<span class="arrow_down"></span>
+						</p>
+					</div>
 					<div class="video_loader" id="video_loader02">
+
 						<div class="video_cntt"></div>
 					</div>
 

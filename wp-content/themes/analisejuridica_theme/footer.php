@@ -31,6 +31,11 @@
 								?>
 							</nav>
 						</div>
+						<div class="layerup">
+							<a href="http://layerup.com.br/" target="_blank" title="designed by Layer Up" alt="Layer Up - identidade visual">
+								<img src="<?php echo get_template_directory_uri(); ?>/img/footer-layerup.png" />
+						  		</a>
+						</div>
 					</div>
 				</div>
 			</footer>

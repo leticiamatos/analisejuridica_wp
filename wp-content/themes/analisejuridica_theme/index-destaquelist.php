@@ -22,11 +22,7 @@
 	<li class="postlist_item">		
 		<article id="post-<?php get_the_ID(); ?>" <?php post_class(); ?>>
 			<figure class="post_img">
-				<?php if ( has_post_thumbnail()) : ?>
-					<?php the_post_thumbnail();  ?>
-				<?php else: ?>
-					<img src="<?php echo get_template_directory_uri(); ?>/img/thumbnail-no.png">
-				<?php endif; ?>
+				<?php get_template_part('thumbnail'); ?>
 			</figure>
 			<div class="text">
 				<?php echo the_category_list(); ?>
@@ -60,4 +56,4 @@
 <?php 
 	$allposts_permalink = get_permalink(get_page_by_path('lista-completa-de-materias')->ID);
 ?>
-<a class="allposts" href="<?php echo $allposts_permalink; ?> ">lista completa de matérias</a>
+<a class="allposts" href="<?php echo $allposts_permalink; ?>" target="_blank">lista completa de matérias</a>

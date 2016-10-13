@@ -1,11 +1,8 @@
 <li class="postlist_item">		
 	<article id="post-<?php get_the_ID(); ?>" <?php post_class(); ?>>
 		<figure class="post_img">
-			<?php if ( has_post_thumbnail()) : ?>
-				<?php the_post_thumbnail();  ?>
-			<?php else: ?>
-				<img src="<?php echo get_template_directory_uri(); ?>/img/thumbnail-no.png">
-			<?php endif; ?>
+				<?php get_template_part('thumbnail'); ?>
+
 		</figure>
 		<div class="text">
 			<?php echo the_category_list(); ?>

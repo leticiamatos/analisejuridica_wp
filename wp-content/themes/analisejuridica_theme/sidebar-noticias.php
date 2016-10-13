@@ -2,14 +2,16 @@
   
   $cat_obj = get_category_by_slug( 'noticias' );
   $cat_id = $cat_obj->term_id;
+  $cat_link = get_category_link( $cat_id );
 
   $args = array( 
     'posts_per_page' => 5,
     'cat'    => $cat_id
   );
 ?>
+
 <div class="prefooter_post-wpr">
-  <h3 class="col_title">Últimas Notícias</h3>
+  <h3 class="col_title"><a href="<?php echo $cat_link; ?>">Últimas Notícias</a></h3>
   <ul class="prefooter_post-list">
 
 <?php

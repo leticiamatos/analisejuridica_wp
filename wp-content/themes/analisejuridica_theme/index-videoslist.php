@@ -32,11 +32,8 @@
 	<li class="postlist_item">		
 		<article id="post-<?php get_the_ID(); ?>" <?php post_class(); ?>>
 			<figure class="post_img">
-				<?php if ( has_post_thumbnail()) : ?>
-					<?php the_post_thumbnail();  ?>
-				<?php else: ?>
-					<img src="<?php echo get_template_directory_uri(); ?>/img/thumbnail-no.png">
-				<?php endif; ?>
+				<?php get_template_part('thumbnail'); ?>
+
 			</figure>
 			<div class="text">
 				<?php echo the_category_list(); ?>
@@ -50,7 +47,7 @@
 				// $video_embed_code = htmlspecialchars(get_post_meta(get_the_ID(), 'video_embed_code', true)); 
 				// if($video_embed_code):
 			?>
-				<a class="link video_link" data-videocntt="video_loader02" data-videoid="<?php echo $video_youtube_id; ?>"></a> 
+				<a class="link video_link" data-videocntt="video_loader02" data-videoid="<?php echo $video_youtube_id; ?>" data-post-href="<?php the_permalink(); ?>"></a> 
 			<?php endif; ?>
 
 			<a class="link" href="<?php the_permalink(); ?>"></a> 

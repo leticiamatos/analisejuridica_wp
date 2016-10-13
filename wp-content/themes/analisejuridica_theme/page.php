@@ -11,13 +11,16 @@
 		<section class="block_wpr main_cntt">
 			<div class="block_cntt">
 				<div class="col3-4 post-list">
-	
+					<div class="social_wpr">
+						<?php echo do_shortcode('[DISPLAY_ULTIMATE_SOCIAL_ICONS]'); ?> 
+						<?php //echo do_shortcode('[DISPLAY_ULTIMATE_PLUS]'); ?>
+					</div>
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 						<?php echo the_category_list(); ?>
 						<h1 class="page_title"><?php the_title(); ?></h1>
 
-						<figure class="post_img">
+						<figure class="post_img thumb_img">
 							<?php if ( has_post_thumbnail()) : ?>
 								<?php the_post_thumbnail();  ?>
 							<?php endif; ?>
@@ -32,6 +35,8 @@
 				</div>
 
 				<?php get_sidebar(); ?>
+				<span class="clear"></span>
+
 			</div>
 		</section>
 

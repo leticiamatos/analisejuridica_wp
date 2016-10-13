@@ -4,11 +4,8 @@
 			<p class="date">
 				<?php the_date('d/m/Y'); ?>
 			</p>
-			<?php if ( has_post_thumbnail()) : ?>
-				<?php the_post_thumbnail();  ?>
-			<?php else: ?>
-				<img src="<?php echo get_template_directory_uri(); ?>/img/thumbnail-no.png">
-			<?php endif; ?>
+				<?php get_template_part('thumbnail'); ?>
+
 		</figure>
 		<div class="text">
 			<?php echo the_category_list(); ?>

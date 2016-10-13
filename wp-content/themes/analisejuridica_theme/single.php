@@ -16,7 +16,11 @@
 <?php else: ?>
 				<div class="col3-4 post-list">
 <?php endif; ?>
-	
+ 
+					<div class="social_wpr">
+						<?php echo do_shortcode('[DISPLAY_ULTIMATE_SOCIAL_ICONS]'); ?> 
+						<?php //echo do_shortcode('[DISPLAY_ULTIMATE_PLUS]'); ?>
+					</div>
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 						<?php echo the_category_list(); ?>
@@ -27,7 +31,7 @@
 								$date .= ', '. get_the_time('g:i');
 
 								if(get_the_modified_date()){
-									$date .= ' /; Atualizado em '. get_the_modified_date('d/m/Y') .', '. get_the_modified_date('g:i');
+									$date .= ' - Atualizado em '. get_the_modified_date('d/m/Y') .', '. get_the_modified_date('g:i');
 								}
 								//echo get_the_modified_date();
 								echo $date; 
@@ -45,7 +49,7 @@
 								<iframe src="http://www.youtube.com/embed/<?php echo $video_youtube_id; ?>?rel=0&modestbranding=1&showinfo=0&controls=1&theme=light"  frameborder="0" allowfullscreen ></iframe>
 							</div>
 						<?php else: ?>
-							<figure class="post_img">
+							<figure class="post_img thumb_img">
 								<?php if ( has_post_thumbnail()) : ?>
 									<?php the_post_thumbnail();  ?>
 								<?php endif; ?>
@@ -84,6 +88,7 @@
 				<?php else: ?>
 					<?php get_sidebar(); ?>
 				<?php endif; ?>
+				<span class="clear"></span>
 
 			</div>
 		</section>

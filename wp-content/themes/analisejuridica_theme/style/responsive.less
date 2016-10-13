@@ -247,7 +247,29 @@ textarea.txt{
 }
 
 /* Css POst Content Format style */
-body.single article .text{
+@cRed: #951A1D; 
+@cGrayFont:   #858587;
+
+body.single article .the_content.text{
+  a{
+    color: @cRed;
+    font-weight: bold;
+  }
+  article{
+    .gallery{
+      .gallery-item{
+        padding: 0 10px;
+      }
+      .gallery-caption{
+        font-size: 90%;
+        padding-top: 10px;
+        line-height: normal;
+        font-style: italic;
+        padding: 10px;
+        color: @cGrayFont;
+      }
+    }
+  }
 
   blockquote:before,
   blockquote:after,
@@ -529,25 +551,31 @@ body.single article .text{
   }
 
   h1 {
-    font-size: 26px;
-    font-size: 2.6rem;
-    line-height: 1.1538;
+    font-size: 25px;
+    // font-size: 26px;
+    // font-size: 2.6rem;
+    // line-height: 1.1538;
     margin-top: 30px;
     margin-bottom: 10px;
+    font-weight: bold;
   }
 
   h2 {
-    font-size: 22px;
-    font-size: 2.2rem;
-    line-height: 1.3636;
+    font-size: 20px;
+    text-transform: uppercase;
+    // font-size: 22px;
+    // font-size: 2.2rem;
+    // line-height: 1.3636;
     margin-top: 30px;
     margin-bottom: 10px;
+    font-weight: bold;
   }
 
   h3 {
-    font-size: 18px;
-    font-size: 1.8rem;
-    line-height: 1.3333;
+    font-size: 22px;
+    // font-size: 18px;
+    // font-size: 1.8rem;
+    // line-height: 1.3333;
     margin-top: 30px;
     margin-bottom: 10px;
   }
@@ -555,10 +583,15 @@ body.single article .text{
   h6,
   h4,
   h5{
-    font-size: 15px;
-    font-size: 1.5rem;
-    line-height: 1.2;
+    font-size: 18px;
+    // font-size: 15px;
+    // font-size: 1.5rem;
+    // line-height: 1.2;
     margin-top: 30px;
     margin-bottom: 10px;
+  }
+
+  h1, h2, h3, h4, h5, h6{
+    color: #858587;
   }
 }

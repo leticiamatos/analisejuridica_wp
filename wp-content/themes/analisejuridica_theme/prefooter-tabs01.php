@@ -1,5 +1,5 @@
 <?php
-  $n_posts = 5;
+  $n_posts = 4;
 ?>
 
 <div class="tabs" id="prefooter-tabs01">

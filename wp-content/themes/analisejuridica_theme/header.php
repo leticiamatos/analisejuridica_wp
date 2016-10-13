@@ -104,6 +104,7 @@
 						<div class="block_cntt">
 							<div class="col1-3 col_menu">
 								<a class="menu_link"><span>Menu</span></a>
+								<span>&nbsp;</span>
 								<div class="menu_absolute_wpr">
 									<div class="menu_wpr">
 										<nav class="menu_cntt">
@@ -123,7 +124,10 @@
 									</a>
 								</h1>
 							</div>
-							<div class="col1-3"><?php get_template_part('searchform'); ?></div>
+							<div class="col1-3">
+								<span>&nbsp;</span>
+								<?php get_template_part('searchform'); ?>
+							</div>
 
 							<span class="clear"></span>
 						</div>

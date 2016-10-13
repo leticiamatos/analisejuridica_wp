@@ -1,5 +1,5 @@
 <?php
-  $n_posts = 5;
+  $n_posts = 4;
 ?>
 
 <div class="tabs" id="prefooter-tabs02">
@@ -20,30 +20,17 @@
       );
     ?>
 
-    <ul class="prefooter_post-list">
-
+    <ul class="prefooter_post-list most_popular">
 
     <?php
-      $cat_posts = get_posts( $args );
-      if ($cat_posts):
-        $n = 0;
-        foreach ( $cat_posts as $post ) : setup_postdata( $post );
+      $args = array(
+          'post_type' => 'post',
+          'limit' => 4,
+          'header' => 'Mais Lidas',
+          'cat' => $cat_id
+      );
 
-    ?>
-    <?php get_template_part('loop', 'prefooter'); ?>
-
-    <?php 
-      endforeach; 
-      else:
-    ?>
-      <li class="postlist_item">    
-        <article>
-          <h2 class="title"><strong><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?> @ :(</strong></h2>
-        </article>
-      </li>
-    <?php 
-      wp_reset_postdata();
-      endif;
+      wpp_get_mostpopular( $args );
     ?>
 
     </ul>
@@ -60,30 +47,17 @@
       );
     ?>
 
-    <ul class="prefooter_post-list">
-
+    <ul class="prefooter_post-list most_popular">
 
     <?php
-      $cat_posts = get_posts( $args );
-      if ($cat_posts):
-        $n = 0;
-        foreach ( $cat_posts as $post ) : setup_postdata( $post );
+      $args = array(
+          'post_type' => 'post',
+          'limit' => 4,
+          'header' => 'Mais Lidas',
+          'cat' => $cat_id
+      );
 
-    ?>
-    <?php get_template_part('loop', 'prefooter'); ?>
-
-    <?php 
-      endforeach; 
-      else:
-    ?>
-      <li class="postlist_item">    
-        <article>
-          <h2 class="title"><strong><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?> @ :(</strong></h2>
-        </article>
-      </li>
-    <?php 
-      wp_reset_postdata();
-      endif;
+      wpp_get_mostpopular( $args );
     ?>
 
     </ul>
@@ -100,30 +74,17 @@
       );
     ?>
 
-    <ul class="prefooter_post-list">
-
+    <ul class="prefooter_post-list most_popular">
 
     <?php
-      $cat_posts = get_posts( $args );
-      if ($cat_posts):
-        $n = 0;
-        foreach ( $cat_posts as $post ) : setup_postdata( $post );
+      $args = array(
+          'post_type' => 'post',
+          'limit' => 4,
+          'header' => 'Mais Lidas',
+          'cat' => $cat_id
+      );
 
-    ?>
-    <?php get_template_part('loop', 'prefooter'); ?>
-
-    <?php 
-      endforeach; 
-      else:
-    ?>
-      <li class="postlist_item">    
-        <article>
-          <h2 class="title"><strong><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?> @ :(</strong></h2>
-        </article>
-      </li>
-    <?php 
-      wp_reset_postdata();
-      endif;
+      wpp_get_mostpopular( $args );
     ?>
 
     </ul>
