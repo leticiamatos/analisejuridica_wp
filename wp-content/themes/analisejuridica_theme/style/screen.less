@@ -1637,6 +1637,13 @@ body.page-template-page-todososposts #todososposts_wpr{
     border: none;
     .noShaddow;
  }
+ li.postlist_item{
+  float: left;
+  clear: none;
+  &:nth-of-type(odd){
+    clear: both;
+  }
+ }
  .post-list article.post{
     padding: 0;
     .post-categories {
@@ -1652,15 +1659,17 @@ body.page-template-page-todososposts #todososposts_wpr{
       color: @cGrayFont;
       padding-top: 0;
     }
-    .date{
-      font-style: italic;
-      color: @cGrayFont;
-      font-size: 12px;
-    }
     .excpt{
       color: #777;
     }
  }
+  .date{
+    padding: 20px 0 5px;
+    margin: 0 30px;
+    color: @cRed;
+    font-size: 12px;
+    border-bottom: 1px solid @cRed;
+  }
 }
 
 body.error404{

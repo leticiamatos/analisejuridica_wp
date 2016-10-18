@@ -24,13 +24,43 @@ query_posts( $args );
 					<h1 class="page_title"><?php the_title(); ?></h1>
 					<ul class="highlight_post_list">
 						<?php
+							$date_prev = false;
+							$date_same = false;
+							$n = 1;
+
 							while ( have_posts() ) : the_post();
+
+							$date_curr = get_the_time('d/m');
+							if($date_curr == $date_prev):
+								$date_same = true;
+								// echo $date_curr . ' datecurr</br>';
+								// echo $date_prev . ' date_prev</br>';
+								// echo "é a mesma data!";
+							else:
+								$date_same = false;
+								// echo $date_curr . ' datecurr</br>';
+								// echo $date_prev . ' date_prev</br>';
+								// echo "NAO é a mesma data!";
+							endif;
+							$date_prev = $date_curr;
+							// echo '</br>'. $n;
 						 	?>
-								<li class="postlist_item">		
+
+								<?php if (!$date_same && $n != 1): ?>
+										<span class="clear"></span>
+									</div> <!-- .same-date_wpr -->
+								<?php endif; $n++; ?>
+				
+								
+								<?php if (!$date_same): ?>
+									<h3 class="date"><?php the_date('d/m/Y'); ?></h3>
+									<div class="same-date_wpr">
+								<?php endif; ?>
+
+								<li class="postlist_item col1-2">		
 									<article id="post-<?php get_the_ID(); ?>" <?php post_class(); ?>>
 										<div class="text">
 											<?php echo the_category_list(); ?> 
-											<span class="date"><?php the_date('d/m/Y'); ?></span>
 											<h3 class="title"><?php the_title(); ?></h3>
 											<div class="excpt">
 												<?php echo get_special_excerpt(250); ?>...

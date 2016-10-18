@@ -112,11 +112,11 @@
 				<div class="slide_cntt">
 					<?php 
 						$gravatar_url = 'http://www.gravatar.com/avatar/'. md5( strtolower( trim( get_the_author_meta('email') ) ) ). '?s=235&d=retro';
-						// if (get_wp_user_avatar()){
-						// 	$gravatar_url = get_wp_user_avatar();
-						// }else{
-						// 	$gravatar_url = '<img src="'.get_the_author_meta('user_url').' />';
-						// }
+						if (get_wp_user_avatar()){
+							$gravatar_url = get_wp_user_avatar();
+						}else{
+							$gravatar_url = '<img src="'.get_the_author_meta('user_url').' />';
+						}
 
 						// if(!$gravatar_url){
 						// 	$gravatar_url = '<img src="http://www.gravatar.com/avatar/'. md5( strtolower( trim( get_the_author_meta('email') ) ) ). '?s=235&d=retro" />';
