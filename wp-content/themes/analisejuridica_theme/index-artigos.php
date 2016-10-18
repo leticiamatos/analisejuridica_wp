@@ -1,6 +1,6 @@
 <?php 
 	
-	$cat_obj = get_category_by_slug( 'debates' );
+	$cat_obj = get_category_by_slug( 'artigos' );
 	$cat_id = $cat_obj->term_id;
 	$cat_link = get_category_link($cat_id);
 	$args = array( 
@@ -13,8 +13,8 @@
 		$cat_posts = get_posts( $args );
 		if ($cat_posts):
 	?>
-<div class="bxslider_wpr bxslider_02">
 
+<div class="bxslider_wpr bxslider_02">
 	<ul class="highlight highlight_wpr colunistas_slider debates_slider">
 	
 	<?php

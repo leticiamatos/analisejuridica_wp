@@ -31,7 +31,8 @@
 
 			<span class="clear"></span>
 			
-			<a class="link slide_link" data-slideorder="<?php echo $n; ?>"></a> 
+			<a class="link" href="<?php the_permalink(); ?>"></a>			
+			<!-- <a class="link slide_link" data-slideorder="<?php // echo $n; ?>"></a>  -->
 
 		</article>
 	</li>

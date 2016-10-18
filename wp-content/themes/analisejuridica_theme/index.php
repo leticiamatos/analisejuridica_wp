@@ -99,14 +99,14 @@
 			<div class="block_cntt">
 <?php
 	// Categories IDs
-	$cat_obj = get_category_by_slug( 'debates' );
+	$cat_obj = get_category_by_slug( 'artigos' );
 	$cat_id = $cat_obj->term_id;
 	$cat_link = get_category_link( $cat_id );
 ?>
 
-				<h3 class="block_title"><a href="<?php echo $cat_link; ?>">Debates</a></h3>
+				<h3 class="block_title"><a href="<?php echo $cat_link; ?>">Artigos</a></h3>
 				<div class="col3-4">
-					<?php get_template_part('index', 'debates'); ?>
+					<?php get_template_part('index', 'artigos'); ?>
 				</div>
 				<div class="col1-4">
 					<!-- Advertising widget area 05 -->

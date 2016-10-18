@@ -3,14 +3,18 @@
 /* Template Name: Todos os Posts */
 
 ?>
-<?php 
+
+<?php get_header(); ?>
+
+<?php
+	
 	$args = array( 
 		'posts_per_page' => 30
 	);
-	$allposts = new WP_Query($args);
+// The Query
+query_posts( $args );
+ 
 ?>
-
-<?php get_header(); ?>
 
 		<main role="main">
 
@@ -20,8 +24,7 @@
 					<h1 class="page_title"><?php the_title(); ?></h1>
 					<ul class="highlight_post_list">
 						<?php
-							if( $allposts->have_posts() ) :
-					 			while ($allposts->have_posts()) : $allposts->the_post(); 
+							while ( have_posts() ) : the_post();
 						 	?>
 								<li class="postlist_item">		
 									<article id="post-<?php get_the_ID(); ?>" <?php post_class(); ?>>
@@ -41,7 +44,6 @@
 								</li>
 						<?php 
 							endwhile; 
-							endif; 
 						?>
 					</ul>
 
