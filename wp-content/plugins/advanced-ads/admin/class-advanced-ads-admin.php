@@ -319,6 +319,10 @@ class Advanced_Ads_Admin {
 			return __( 'Please enter a valid license key', 'advanced-ads' );
 		}
 		
+		if ( has_filter( 'advanced_ads_license_'. $options_slug ) ) {
+			return apply_filters( 'advanced_ads_license_' . $options_slug, false, __METHOD__, $plugin_name, $options_slug, $license_key );
+		}
+		
 		// check if license was already activated and abort activation if so
 		/*if( $this->check_license($license_key, $plugin_name, $options_slug)){
 		    return 1;
@@ -394,6 +398,10 @@ class Advanced_Ads_Admin {
 	 */
 	public function check_license( $license_key = '', $plugin_name = '', $options_slug = '' ){
 	    
+		if ( has_filter( 'advanced_ads_license_'. $options_slug ) ) {
+			return apply_filters( 'advanced_ads_license_' . $options_slug, false, __METHOD__, $plugin_name, $options_slug, $license_key );
+		}
+	    
 		$api_params = array(
 			'edd_action' => 'check_license',
 			'license' => $license_key,
@@ -425,10 +433,14 @@ class Advanced_Ads_Admin {
 
 		if ( '' === $addon || '' === $plugin_name || '' === $options_slug ) {
 			return __( 'Error while trying to disable the license. Please contact support.', 'advanced-ads' );
-		}
+		}		
 
 		$licenses = $this->get_licenses();
 		$license_key = isset($licenses[$addon]) ? $licenses[$addon] : '';
+
+		if ( has_filter( 'advanced_ads_license_'. $options_slug ) ) {
+			return apply_filters( 'advanced_ads_license_' . $options_slug, false, __METHOD__, $plugin_name, $options_slug, $license_key );
+		}
 
 		$api_params = array(
 			'edd_action' => 'deactivate_license',
@@ -562,8 +574,8 @@ class Advanced_Ads_Admin {
          */
         public function add_on_updater(){
 	    
-		// ignore, if not main blog
-		if( is_multisite() && ! is_main_site() ){
+		// ignore, if not main blog or is ajax
+		if( ( is_multisite() && ! is_main_site() ) || defined( 'DOING_AJAX' ) ){
 		    return;
 		}
 
@@ -581,13 +593,6 @@ class Advanced_Ads_Admin {
 		if( $add_ons === array() ) {
 		    return;
 		}
-		
-		// check only every hour for updates to decrease load on store
-		// ignore, if force-update was set
-		if( ! isset( $_GET['force-check'] ) && get_transient( ADVADS_SLUG . '_add-on-updates-checked' ) ){
-		    return;
-		}
-		set_transient( ADVADS_SLUG . '_add-on-updates-checked', true, 3600 );
 		
 		// load license keys
 		$licenses = get_option(ADVADS_SLUG . '-licenses', array());

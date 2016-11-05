@@ -161,16 +161,23 @@ class Advanced_Ads_Ad_Type_Adsense extends Advanced_Ads_Ad_Type_Abstract {
 		}
 
 		//check if passive cb is used
-		if ( isset( $gadsense['adsense_count'] ) && $ad->global_output ) {
+		if ( isset( $gadsense['adsense_count'] ) ) {
 			$gadsense['adsense_count']++;
 		} else {
 			$gadsense['adsense_count'] = 1;
 		}
 
-		if ( $limit_per_page && 3 < $gadsense['adsense_count'] ) {
+		if ( $limit_per_page && 3 < $gadsense['adsense_count'] && $ad->global_output ) {
 			// The maximum allowed adSense ad per page count is 3 (according to the current Google AdSense TOS).
 			return '';
 		}
+
+		$output = apply_filters( 'advanced-ads-gadsense-output', false, $ad, $pub_id, $content );
+		if ( $output !== false ) {
+			return $output;
+		}
+
+		$output = '';
 
 		if ( 'responsive' != $content->unitType ) {
 			$output .= '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>' . "\n";

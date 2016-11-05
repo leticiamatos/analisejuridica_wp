@@ -18,9 +18,9 @@
 <?php endif; ?>
  
 					<div class="social_wpr">
-						<?php echo do_shortcode('[DISPLAY_ULTIMATE_SOCIAL_ICONS]'); ?> 
-						<?php //echo do_shortcode('[DISPLAY_ULTIMATE_PLUS]'); ?>
+						<?php  echo do_shortcode('[addtoany]'); ?> 
 					</div>
+
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 						<?php echo the_category_list(); ?>
@@ -46,12 +46,15 @@
 							if($video_youtube_id):
 						?>
 							<div class="video_wpr">
-								<iframe src="http://www.youtube.com/embed/<?php echo $video_youtube_id; ?>?rel=0&modestbranding=1&showinfo=0&controls=1&theme=light"  frameborder="0" allowfullscreen ></iframe>
+								<iframe src="http://www.youtube.com/embed/<?php echo $video_youtube_id; ?>?rel=0&modestbranding=1&showinfo=0&controls=1&theme=light" frameborder="0" allowfullscreen ></iframe>
 							</div>
 						<?php else: ?>
 							<figure class="post_img thumb_img">
 								<?php if ( has_post_thumbnail()) : ?>
 									<?php the_post_thumbnail();  ?>
+									<p class="thumb_descptn">
+										<?php echo get_post(get_post_thumbnail_id())->post_excerpt; ?>
+									</p>
 								<?php endif; ?>
 							</figure>
 						<?php endif; ?>
@@ -62,12 +65,11 @@
 						<div class="tags_wpr">
 							<?php the_tags( __( '', 'html5blank' ), ' '); ?>
 						</div>
-
-						<div class="facebook">
-							<h3 class="block_title">Comentários</h3>
-							<div class="fb-comments" data-href="<?php the_permalink(); ?>" data-numposts="5" data-mobile="true" width="auto"></div>
+		                <div class="facebook">
+							<h3 class="block_title">Comentários</h3>   
+							<div class="fb-comments" data-href="<?= the_permalink();?>" data-numposts="5" style="width: 100%!important;"></div>
 						</div>
-						
+					
 						<div class="nextprev_buttons">
 							<div class="col1-4">
 								<span class="post_prev"><?php previous_post_link('%link', 'Anterior', TRUE); ?></span>

@@ -196,11 +196,9 @@ class Advanced_Ads_AdSense_Admin {
                 <p class="description">
 		<?php
 			printf(
-				__( 'Currently, Google AdSense <a target="_blank" href="%s" title="Terms Of Service">TOS</a> imposes a limit of %d display ads per page. You can disable this limitation at your own risks.', 'advanced-ads' ),
-				esc_url( 'https://www.google.com/adsense/terms' ), 3
-			); ?><br/><?php
-			_e( 'Notice: Advanced Ads only considers the AdSense ad type for this limit.', 'advanced-ads' );
-			?></p>
+				__( 'There is no explicit limit for AdSense ads anymore, but you can still use this setting to prevent too many AdSense ads to show accidentally on your site.', 'advanced-ads' ),
+				esc_url( 'https://www.google.com/adsense/terms' )
+			); ?></p>
 		<?php if( defined( 'AAP_VERSION' ) ) : /* give warning when cache-busting in Pro is active */ ?>
 		<p class="advads-error-message"><?php _e( 'Due to technical restrictions, the limit does not work on placements with cache-busting enabled.', 'advanced-ads' ); ?></p>
 		<?php endif;

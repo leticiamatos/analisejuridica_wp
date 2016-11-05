@@ -214,6 +214,25 @@ class Advanced_Ads_Checks {
 	}
 	
 	/**
+	 * check if any of the global hide ads options is set
+	 * 
+	 * @since 1.7.10
+	 * @return bool
+	 */
+	public static function ads_disabled(){
+		$options = Advanced_Ads::get_instance()->options();
+		if( isset( $options['disabled-ads'] ) && is_array( $options['disabled-ads'] ) ){
+			foreach( $options['disabled-ads'] as $_value ){
+				if( !empty( $_value ) ){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	
+	/**
 	 * check for potential jQuery errors
 	 * only script, so no return, but direct output
 	 * 

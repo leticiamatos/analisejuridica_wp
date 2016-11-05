@@ -6,9 +6,11 @@
 </select>
 <select id="advads-filter-date">
 	<option value="">- <?php _e( 'all ad dates', 'advanced-ads' ); ?> -</option>
-	<option value="advads-filter-expired" style="display:none;"><?php _e( 'expired', 'advanced-ads' ); ?></option>
-	<option value="advads-filter-any-exp-date" style="display:none;"><?php _e( 'any expiry date', 'advanced-ads' ); ?></option>
-	<option value="advads-filter-future" style="display:none;"><?php _e( 'planned', 'advanced-ads' ); ?></option>
+	<?php
+	foreach ( $timing_filter as $_key => $_item ) {
+		printf( '<option value="%s" style="display:none;">%s</option>', $_key, $_item );
+	}
+	?>
 </select>
 <select id="advads-filter-group">
 	<option value="">- <?php _e( 'all ad groups', 'advanced-ads' ); ?> -</option>

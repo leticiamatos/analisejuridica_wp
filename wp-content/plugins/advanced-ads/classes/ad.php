@@ -260,7 +260,7 @@ class Advanced_Ads_Ad {
 	public function output( $output_options = array() ){
 		if ( ! $this->is_ad ) { return ''; }
 
-		$output_options['global_output'] = isset( $output_options['global_output'] ) ? $output_options['global_output'] : $this->global_output;
+		$output_options['global_output'] = $this->global_output = isset( $output_options['global_output'] ) ? $output_options['global_output'] : $this->global_output;
 
 		// switch between normal and debug mode
 		if( isset( $this->output['debugmode'] ) ){
@@ -303,7 +303,7 @@ class Advanced_Ads_Ad {
 		
 		if ( ! $check_options['passive_cache_busting'] ) {
 			// don’t display ads that are not published or private for users not logged in
-			if ( $this->status !== 'publish' && ! ($this->status === 'private' && ! is_user_logged_in() ) ) {
+			if ( $this->status !== 'publish' && ! ($this->status === 'private' &&  is_user_logged_in() ) ) {
 				return false;
 			}
 
@@ -403,12 +403,16 @@ class Advanced_Ads_Ad {
 		// if expiry_date is not set null is returned
 		$ad_expiry_date = (int) $this->options( 'expiry_date' );
 
-		if ( $ad_expiry_date <= 0 ) {
+		if ( $ad_expiry_date <= 0 || $ad_expiry_date > time() ) {
 			return true;
 		}
 
-		// check blog time against current time (GMT)
-		return $ad_expiry_date > time();
+		// set status to 'draft' if the ad is expired
+		if ( $this->status !== 'draft' ) {
+			wp_update_post( array( 'ID' => $this->id, 'post_status' => 'draft' ) );
+		}
+
+		return false;
 	}
 
 	/**
@@ -762,7 +766,10 @@ class Advanced_Ads_Ad {
 			$wrapper['style']['height'] = intval( $this->height ) . 'px';
 		}
 
-		$wrapper['data-id'] = $this->id;
+		// exclude the 'Header Code' placement type
+		if ( ! isset( $this->args['placement_type'] ) || ! 'post_top' === $this->args['placement_type'] ) {
+			$wrapper['data-id'] = $this->id;
+		}
 
 		return $wrapper;
 	}
@@ -862,7 +869,7 @@ class Advanced_Ads_Ad {
 	 * @return str $output
 	 */
 	public function maybe_add_label( &$output ) {
-		if ( isset( $this->args['placement_type'] ) && $this->args['placement_type'] !== 'header' &&
+		if ( ! ( isset( $this->args['placement_type'] ) && $this->args['placement_type'] === 'header' ) &&
 			$this->type !== 'group' &&
 			$label = Advanced_Ads::get_instance()->get_label()
 		) {
@@ -881,4 +888,5 @@ class Advanced_Ads_Ad {
 
 		return $output;
 	}
+
 }

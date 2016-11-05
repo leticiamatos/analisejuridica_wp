@@ -116,6 +116,9 @@ class Advanced_Ads {
 			Advanced_Ads_Ajax::get_instance();
 		}
 		add_action( 'plugins_loaded', array( $this, 'wp_plugins_loaded' ) );
+		
+		// allow add-ons to interact
+		add_action( 'init', array( $this, 'advanced_ads_loaded' ), 9 );
 	}
 
 	/**
@@ -166,9 +169,6 @@ class Advanced_Ads {
 		// register hooks and filters for auto ad injection
 		$this->init_injection();
 
-		// allow add-ons to hook
-		do_action( 'advanced-ads-plugin-loaded' );
-
 		// manipulate sidebar widget
 		add_filter( 'dynamic_sidebar_params', array( $this, 'manipulate_widget_output' ) );
 
@@ -181,6 +181,13 @@ class Advanced_Ads {
 
 	}
 
+	/**
+	 *  allow add-ons to hook
+	 */
+	public function advanced_ads_loaded() {
+		do_action( 'advanced-ads-plugin-loaded' );
+	}
+	
 	/**
 	 * init / load plugin specific functions and settings
 	 *

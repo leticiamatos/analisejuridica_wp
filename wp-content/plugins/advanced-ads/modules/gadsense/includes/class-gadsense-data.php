@@ -2,76 +2,68 @@
 
 class Advanced_Ads_AdSense_Data {
 
-	private static $instance;
+    private static $instance;
+    private $options;
+    private $resizing;
 
-	private $options;
+    private function __construct() {
 
-	private $resizing;
+	$options = get_option(GADSENSE_OPT_NAME, array());
 
-	private function __construct() {
+	// set defaults
+	if (!isset($options['adsense-id'])) {
+	    
+		$options['adsense-id'] = '';
+		// starting version 1.7.9, the default limit setting was changed from true to false due to AdSense policy change
+		$options['limit-per-page'] = false;
 
-        $options = get_option(GADSENSE_OPT_NAME, array());
-
-		// AdSense publisher id
-		if ( ! isset($options['adsense-id']) ) {
-            // check if there is still an old setting
-            // 'gadsense_options' was renamed
-            $old_options = get_option( 'gadsense_options', array() );
-            if ( isset($old_options['adsense_id']) ) {
-                $options['adsense-id'] = $old_options['adsense_id'];
-                $options['limit-per-page'] = $old_options['limit_ads_per_page'];
-
-                // remove old options
-                delete_option('gadsense_options');
-            } else {
-                $options['adsense-id'] = '';
-                $options['limit-per-page'] = true;
-            }
-
-            update_option(GADSENSE_OPT_NAME, $options);
-		}
-
-            if ( !isset($options['limit-per-page']) ) {
-                $options['limit-per-page'] = '';
-            }
-
-            if ( !isset($options['page-level-enabled']) ) {
-                $options['page-level-enabled'] = false;
-            }
-
-		$this->options = $options;
-
-		// Resizing method for responsive ads
-		$this->resizing = array(
-			'auto' => __( 'Auto', 'advanced-ads' ),
-		);
+		update_option(GADSENSE_OPT_NAME, $options);
 	}
 
-        /**
-	 * GETTERS
-	 */
-	public function get_options() {
-		return $this->options;
-	}
-	public function get_adsense_id() {
-		return trim($this->options['adsense-id']);
+	if (!isset($options['limit-per-page'])) {
+	    // starting version 1.7.9, the default limit setting was changed from true to false due to AdSense policy change
+	    $options['limit-per-page'] = false;
 	}
 
-	public function get_limit_per_page() {
-		return $this->options['limit-per-page'];
+	if (!isset($options['page-level-enabled'])) {
+	    $options['page-level-enabled'] = false;
+	    
 	}
 
-	public function get_responsive_sizing() {
-		$resizing = $this->resizing;
-		$this->resizing = apply_filters( 'advanced-ads-gadsense-responsive-sizing', $resizing );
-		return $this->resizing;
-	}
+	$this->options = $options;
 
-	public static function get_instance() {
-		if ( null == self::$instance ) {
-			self::$instance = new self;
-		}
-		return self::$instance;
+	// Resizing method for responsive ads
+	$this->resizing = array(
+	    'auto' => __('Auto', 'advanced-ads'),
+	);
+    }
+
+    /**
+     * GETTERS
+     */
+    public function get_options() {
+	return $this->options;
+    }
+
+    public function get_adsense_id() {
+	return trim($this->options['adsense-id']);
+    }
+
+    public function get_limit_per_page() {
+	return $this->options['limit-per-page'];
+    }
+
+    public function get_responsive_sizing() {
+	$resizing = $this->resizing;
+	$this->resizing = apply_filters('advanced-ads-gadsense-responsive-sizing', $resizing);
+	return $this->resizing;
+    }
+
+    public static function get_instance() {
+	if (null == self::$instance) {
+	    self::$instance = new self;
 	}
+	return self::$instance;
+    }
 
 }

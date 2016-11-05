@@ -3,11 +3,6 @@
  * array with admin notices
  */
 $advanced_ads_admin_notices = apply_filters( 'advanced-ads-notices', array(
-    // if users updated from a previous version to 1.4.5
-    '1.4.5' => array(
-	'type' => 'update',
-	'text' => 'Advanced Ads 1.4.5 changes the behavior of some display conditions. Please read this <a href="http://wpadvancedads.com/advanced-ads-1-4-5/" target="_blank">update post</a> to learn if this change should concern you.',
-    ),
     // email tutorial
     'nl_intro' => array(
 	'type' => 'info',
@@ -34,21 +29,6 @@ $advanced_ads_admin_notices = apply_filters( 'advanced-ads-notices', array(
 	'text' => __( 'Learn more about how and <strong>how much you can earn with AdSense</strong> and Advanced Ads from my dedicated newsletter.', 'advanced-ads' ),
 	'confirm_text' => __( 'Subscribe me now', 'advanced-ads' ),
 	'global' => true
-    ),
-    // if users updated from a previous version to 1.5.4
-    '1.5.4' => array(
-	'type' => 'update',
-	'text' => 'With Advanced Ads 1.5.4 the handling of <strong>visitor conditions</strong> became more consistent, flexible, and hopefully easier to use too. Please read this <a href="http://wpadvancedads.com/advanced-ads-1-5-4/" target="_blank">update post</a> to learn if this change should concern you.',
-    ),
-    // if users updated from a previous version to 1.6
-    '1.6' => array(
-	'type' => 'update',
-	'text' => 'Advanced Ads 1.6 contains important <strong>fixes for ad groups</strong>. Please read the <a href="https://wpadvancedads.com/advanced-ads-1-6/" target="_blank">update post</a>.',
-    ),
-    // if users updated from a previous version to 1.6.6
-    '1.6.6' => array(
-	'type' => 'update',
-	'text' => 'Advanced Ads 1.6.6 changed <a href="/wp-admin/admin.php?page=advanced-ads-placements">placements</a> completely. Take a look at the <a href="https://wpadvancedads.com/advanced-ads-1-6-6/" target="_blank">update post</a> to find out why I am so excited about it.',
     ),
     // if users updated from a previous version to 1.7
     '1.7' => array(

@@ -15,9 +15,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="<?php bloginfo('description'); ?>">
-
+		
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		
 		<?php wp_head(); ?>
-
 	</head>
 
 	<?php 
@@ -30,16 +31,17 @@
 
 	<body <?php body_class($home_class); ?>>
 
-		<!-- Facebook Comments API -->
-		<div id="fb-root"></div>
-		<script>(function(d, s, id) {
-		  var js, fjs = d.getElementsByTagName(s)[0];
-		  if (d.getElementById(id)) return;
-		  js = d.createElement(s); js.id = id;
-		  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.7&appId=252945901438792";
-		  fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
-
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/pt_PT/sdk.js#xfbml=1&version=v2.8&appId=135875086829151";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	
 		<?php
 			$cat_parent = '';
 

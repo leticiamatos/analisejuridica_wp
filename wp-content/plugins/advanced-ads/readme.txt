@@ -3,8 +3,8 @@ Contributors: webzunft
 Donate link:https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5RRRCEBGN3UT2
 Tags: ads, ad, ad inserter, ad injection, ad manager, ads manager, ad widget, adrotate, adsense, advertise, advertisements, advertising, adverts, advert, amazon, banner, banners, buysellads, chitika, clickbank, dfp, doubleclick, geotarget, geolocation, geo location, google dfp, monetization, widget
 Requires at least: WP 4.2, PHP 5.3
-Tested up to: 4.6
-Stable tag: 1.7.6
+Tested up to: 4.6.1
+Stable tag: 1.7.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -113,7 +113,7 @@ You can also use it to insert additional ad network tags into header or footer o
 
 * switch sizes of an ad
 * switch between normal and responsive ads
-* automatic limit to 3 AdSense banners according to AdSense terms of service (can be disabled)
+* optional limit to 3 AdSense banners according to AdSense terms of service
 * hide AdSense advertisements on 404 pages by default (to comply with AdSense terms)
 * insert Page-Level ads code globally
 * assistant for exact sizes of responsive ads with the [Responsive add-on](https://wpadvancedads.com/add-ons/responsive-ads/)
@@ -141,6 +141,8 @@ Localizations: English, German, French, Spanish, Dutch, Italian, Portuguese
 > * [Sticky Ads](https://wpadvancedads.com/sticky-ads/demo/) – increase click rates with fixed, sticky, and anchor ads
 > * [PopUp and Layer Ads](https://wpadvancedads.com/add-ons/popup-and-layer-ads/) – display ads and other content in layers and popups
 > * [Slider](https://wpadvancedads.com/add-ons/slider/) – create a simple slider from your ads
+
+If you have problems with Advanced Ads, please reach out to [our support](https://wpadvancedads.com/support/).
 
 == Installation ==
 
@@ -203,6 +205,50 @@ There is no revenue share. Advanced Ads doesn’t alter your ad codes in a way t
 4. Placements that let you inject ads anywhere into your site without coding (6 in Advanced Ads + 9 through add-ons)
 
 == Changelog ==
+
+= 1.7.9.3 =
+
+* added Selling Ads widget on overview page
+* removed add-on update transient hopefully fixing update checks
+* updated EDD class
+* workaround for empty post-id error caused by BuddyPress
+
+= 1.7.9.2 =
+
+* display ad health menu only to ad admins
+* removed update notices prior to 1.7
+* fixed is_not operator for specific pages did not display the ad on archive pages
+* fixed disabled-ads notice showing on support page when no option was selected
+* fixed user rights not set correctly on network activate in a multisite – please disable and reenable the plugin if you have it network activated
+
+= 1.7.9.1 =
+
+* removed the `the_content` check from non-singular pages
+* moved ad blocker check into footer
+
+= 1.7.9 =
+
+* added frontend error checks to the admin bar
+* changed default value for AdSense limit from true to false due to AdSense policy change, [read more](https://webgilde.com/en/ad-limit-adsense/)
+* fixed unhighlighted placement type in Chrome
+
+= 1.7.8 =
+
+* prevent any ad container output in the header
+* show advertisement label also for manually placed ads
+* fixed AdSense slot ID when delivered through cache-busting
+* fixed reserved place option not working after image upload
+* fixed placement type display
+* fixed missing translation for show/hide options
+
+= 1.7.7 =
+
+* allow to inject a new ad into existing placements
+* added is/is_not operator to “post type” display condition
+* show ads with the “specific pages” display condition only on these pages and not on archives
+* set expired ads to “draft” post status
+* highlight draft and pending ads in ad list
+* updated AdSense 3-ads-limit text. AdSense has no explicit limit anymore
 
 = 1.7.6 =
 

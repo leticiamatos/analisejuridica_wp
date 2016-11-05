@@ -15,21 +15,18 @@
 					<div class="contactform_wpr">
 						<h4 class="col_title">Fale Conosco</h4>
 						<div class="contactform_cntt sForm">
-							<form>
+							<?php //echo do_shortcode('[contact-form-7 id="3337" title="Fale Conosco"]' ); ?>
+							<!--form>
 								<div class="form_div">
-									<!-- <label>Nome:</label> -->
 									<input type="text" class="txt" placeholder="Nome:" />
 								</div>
 								<div class="form_div">
-									<!-- <label>E-mail:</label> -->
 									<input type="text" class="txt" placeholder="E-mail:" />
 								</div>
 								<div class="form_div">
-									<!-- <label>Assunto:</label> -->
 									<input type="text" class="txt" placeholder="Assunto:" />
 								</div>
 								<div class="form_div">
-									<!-- <label>Mensagem:</label> -->
 									<textarea class="txt" placeholder="Mensagem:"></textarea>
 								</div>
 								<div class="buttons">
@@ -37,7 +34,27 @@
 									</div>
 									<input type="button" class="btn" value="Enviar" />
 								</div>
-							</form>
+							</form-->
+							<!--form>
+								<div class="form_div">
+									[text nome class:txt placeholder "Nome:"]
+								</div>
+								<div class="form_div">
+									[text* email class:txt placeholder "E-mail:"]
+								</div>
+								<div class="form_div">
+									[text subject class:txt placeholder "Assunto:"]
+								</div>
+								<div class="form_div">
+									[textarea* msg class:txt placeholder "Mensagem:"]
+								</div>
+								<div class="buttons">
+									<div class="captcha">		
+									</div>
+									[submit class:btn "Enviar"]
+								</div>
+								<div class="g-recaptcha" data-sitekey="6LedBgsUAAAAAEWcMoUZuhKBLkVW8JjCVCKYqgSU"></div>
+							</form-->
 						</div>
 					</div>
 				</div>

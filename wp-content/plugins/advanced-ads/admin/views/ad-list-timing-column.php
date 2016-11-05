@@ -23,6 +23,6 @@
                 <p><?php printf( __( '<strong>expired</strong> %s', 'advanced-ads' ), $expiry_date->format( $expiry_date_format ) ); ?></p>
             <?php endif; ?>
         <?php endif; ?>
-		<?php do_action( 'advanced-ads-ad-list-timing-column-after', $ad ); ?>
+        <?php echo $content_after; ?>
 	</div>
 </fieldset>

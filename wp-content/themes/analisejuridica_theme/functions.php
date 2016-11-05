@@ -242,7 +242,7 @@ if (function_exists('register_sidebar'))
         'name' => __('Advertising Header - Area 1', 'html5blank'),
         'description' => __('Banner 920×100px - abaixo do cabeçalho', 'html5blank'),
         'id' => 'widget-adv-area-1',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'before_widget' => '<div id="%1$s" class="adv-cntt %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
@@ -252,7 +252,7 @@ if (function_exists('register_sidebar'))
         'name' => __('Advertising Home - Area 2', 'html5blank'),
         'description' => __('Banner 300×250px - 1ª linha abaixo da categoria [ Destaque ]', 'html5blank'),
         'id' => 'widget-adv-area-2',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'before_widget' => '<div id="%1$s" class="adv-cntt %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
@@ -262,7 +262,7 @@ if (function_exists('register_sidebar'))
         'name' => __('Advertising Home - Area 3', 'html5blank'),
         'description' => __('Banner 300×250px -  2ª linha abaixo da categoria [ Destaque ]', 'html5blank'),
         'id' => 'widget-adv-area-3',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'before_widget' => '<div id="%1$s" class="adv-cntt %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
@@ -272,7 +272,7 @@ if (function_exists('register_sidebar'))
         'name' => __('Advertising Home - Area 4', 'html5blank'),
         'description' => __('Banner 920×100px - acima da categoria [ Vídeos ]', 'html5blank'),
         'id' => 'widget-adv-area-4',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'before_widget' => '<div id="%1$s" class="adv-cntt %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
@@ -282,7 +282,7 @@ if (function_exists('register_sidebar'))
         'name' => __('Advertising Home - Area 5', 'html5blank'),
         'description' => __('Banner 300×250px -  1ª linha abaixo da categoria [ Vídeos ]', 'html5blank'),
         'id' => 'widget-adv-area-5',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'before_widget' => '<div id="%1$s" class="adv-cntt %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
@@ -292,7 +292,7 @@ if (function_exists('register_sidebar'))
         'name' => __('Advertising Home - Area 6', 'html5blank'),
         'description' => __('Banner 300×250px -  2ª linha abaixo da categoria [ Destaque ]', 'html5blank'),
         'id' => 'widget-adv-area-6',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'before_widget' => '<div id="%1$s" class="adv-cntt %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
@@ -302,7 +302,7 @@ if (function_exists('register_sidebar'))
         'name' => __('Advertising Footer - Area 7', 'html5blank'),
         'description' => __('Banner 920×100px -  1ª linha acima do pré-footer categoria [ Últimas Publicações, Mais Lidas e Fale Conosco ]', 'html5blank'),
         'id' => 'widget-adv-area-7',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'before_widget' => '<div id="%1$s" class="adv-cntt %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
@@ -312,7 +312,7 @@ if (function_exists('register_sidebar'))
         'name' => __('Advertising Footer - Area 8', 'html5blank'),
         'description' => __('Banner 920×100px - 1ª linha abaixo do pré-footer categoria [ Últimas Publicações, Mais Lidas e Fale Conosco ]', 'html5blank'),
         'id' => 'widget-adv-area-8',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'before_widget' => '<div id="%1$s" class="adv-cntt %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
@@ -322,7 +322,7 @@ if (function_exists('register_sidebar'))
         'name' => __('Advertising Sidebar - Area 9', 'html5blank'),
         'description' => __('Banner 300×250px - acima do box [ Assuntos Relacionados ]', 'html5blank'),
         'id' => 'widget-adv-area-9',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'before_widget' => '<div id="%1$s" class="adv-cntt %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
@@ -332,7 +332,7 @@ if (function_exists('register_sidebar'))
         'name' => __('Advertising Sidebar - Area 10', 'html5blank'),
         'description' => __('Banner 300×250px - abaixo do box [ Assuntos Relacionados ]', 'html5blank'),
         'id' => 'widget-adv-area-10',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
+        'before_widget' => '<div id="%1$s" class="adv-cntt %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
@@ -343,7 +343,7 @@ if (function_exists('register_sidebar'))
     //     'name' => __('Widget Area 2', 'html5blank'),
     //     'description' => __('Description for this widget-area...', 'html5blank'),
     //     'id' => 'widget-area-2',
-    //     'before_widget' => '<div id="%1$s" class="%2$s">',
+    //     'before_widget' => '<div id="%1$s" class="adv-cntt %2$s">',
     //     'after_widget' => '</div>',
     //     'before_title' => '<h3>',
     //     'after_title' => '</h3>'
@@ -707,7 +707,7 @@ function is_parent_category($id){
     if (!$parent){
         return $id;
     }else{
-        $parent_id = $parent->cat_ID;
+        //$parent_id = $parent->cat_ID;
         $parent_id = false;
     
         return $parent_id;
@@ -779,6 +779,8 @@ function the_category_list( $separator = '', $parents='', $post_id = false ) {
     }
     return apply_filters( 'the_category', $thelist, $separator, $parents );
 } 
+
+add_filter( 'wpcf7_validate_configuration', '__return_false' );
 
 ?>
 

@@ -161,6 +161,10 @@ class Advanced_Ads_Admin_Ad_Type {
 				$html_classes .= ' advads-filter-future';
 			}
 
+		    ob_start();
+		    do_action_ref_array( 'advanced-ads-ad-list-timing-column-after', array( $ad, &$html_classes ) );
+		    $content_after = ob_get_clean();
+
 			include ADVADS_BASE_PATH . 'admin/views/ad-list-timing-column.php';
 		}
 	}
@@ -173,6 +177,12 @@ class Advanced_Ads_Admin_Ad_Type {
 		if ( ! isset( $screen->id ) || $screen->id !== 'edit-advanced_ads' ) {
 			return;
 		}
+
+		$timing_filter = apply_filters( 'advanced-ads-ad-list-timing-column-filter', array(
+			'advads-filter-expired' => __( 'expired', 'advanced-ads' ),
+			'advads-filter-any-exp-date' => __( 'any expiry date', 'advanced-ads' ),
+			'advads-filter-future' => __( 'planned', 'advanced-ads' )
+		) );
 
 		include ADVADS_BASE_PATH . 'admin/views/ad-list-filters.php';
 	}
@@ -386,6 +396,9 @@ class Advanced_Ads_Admin_Ad_Type {
 		}
 		$ad = new Advanced_Ads_Ad( $post->ID );
 
+		$placement_types = Advanced_Ads_Placements::get_placement_types();
+		$placements = Advanced_Ads::get_ad_placements_array(); // -TODO use model
+
 		include ADVADS_BASE_PATH . 'admin/views/ad-info-top.php';
 	}
 
@@ -434,7 +447,7 @@ class Advanced_Ads_Admin_Ad_Type {
 		$utc_ts = $ad->expiry_date ? $ad->expiry_date : time();
 		$utc_time = date_create( '@' . $utc_ts );
         $tz_option = get_option( 'timezone_string' );
-        $exp_time = clone( $utc_time );
+        $exp_time = clone $utc_time;
 
         if ( $tz_option ) {
             $exp_time->setTimezone( Advanced_Ads_Admin::get_wp_timezone() );

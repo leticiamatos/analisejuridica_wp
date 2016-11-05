@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=seb.r
 Tags: social media, facebook, instagram, youtube, twitter, share, social share, buttons, counter, pop-up, subscription, icons
 Requires at least: 2.8
 Tested up to: 4.6.1
-Stable tag: 1.5.4
+Stable tag: 1.5.5
 License: GPLv2 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -256,6 +256,9 @@ You cannot use the same plugin twice, however you can install both the USM as we
 
 
 == Changelog ==
+
+= 1.5.5 = 
+* Facebook icon leading to empty pages (in specific cases) fixed
 
 = 1.5.4 = 
 * Twitter sharing text issues with forwarded slashes fixed
@@ -564,5 +567,5 @@ You cannot use the same plugin twice, however you can install both the USM as we
 
 == Upgrade Notice ==
 
-= 1.5.4 =
+= 1.5.5 =
 Please upgrade 

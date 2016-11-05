@@ -33,10 +33,9 @@
     if( count( Advanced_Ads_Checks::conflicting_plugins() ) ) :
 	    $messages[] = sprintf(__( 'Plugins that are known to cause (partial) problems: <strong>%1$s</strong>. <a href="%2$s" target="_blank">Learn more</a>.', 'advanced-ads' ), implode( ', ', Advanced_Ads_Checks::conflicting_plugins() ), ADVADS_URL . 'manual/known-plugin-conflicts/#utm_source=advanced-ads&utm_medium=link&utm_campaign=support');
     endif;
-    $options = Advanced_Ads::get_instance()->options();
-    if( isset( $options['disabled-ads'])  ){
+    if( Advanced_Ads_Checks::ads_disabled() ) :
 	    $messages[] = sprintf(__( 'Ads are disabled for all or some pages. See "disabled ads" in <a href="%s">settings</a>.', 'advanced-ads' ), admin_url('admin.php?page=advanced-ads-settings#top#general') );
-    }
+    endif;
     Advanced_Ads_Checks::jquery_ui_conflict();
 
     $messages = apply_filters( 'advanced-ads-support-messages', $messages );

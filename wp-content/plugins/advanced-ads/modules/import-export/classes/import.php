@@ -366,6 +366,10 @@ class Advanced_Ads_Import {
 						switch ( $_item[0] ) {
 							case 'ad':
 							case Advanced_Ads_Select::AD :
+
+								$found = $this->search_item( $_item[1], Advanced_Ads_Select::AD );
+								if ( $found === false ) { break; }
+
 								if ( $use_existing ) {
 									// assign new ad to an existing placement
 									// - if the placement has no or a single ad assigned, it will be swapped against the new one
@@ -379,26 +383,27 @@ class Advanced_Ads_Import {
 										if ( ! empty( $_item_existing[1] ) && $_item_existing[0] === Advanced_Ads_Select::GROUP ) {
 											$advads_ad_weights = get_option( 'advads-ad-weights', array() );
 
-											if ( term_exists( absint( $_item_existing[1] ), Advanced_Ads::AD_GROUP_TAXONOMY )
-												&& ( $found = array_search( $_item[1], $this->imported_data['ads'] ) )
-											) {
+											if ( term_exists( absint( $_item_existing[1] ), Advanced_Ads::AD_GROUP_TAXONOMY ) ) {
 												wp_set_post_terms( $found, $_item_existing[1], Advanced_Ads::AD_GROUP_TAXONOMY, true );
 												$advads_ad_weights[ $_item_existing[1] ][ $found ] = 1;
 												update_option( 'advads-ad-weights', $advads_ad_weights );
+												// new placement key => old placement key
+												$this->imported_data['placements'][ $placement_key_uniq ] = $placement_key_uniq;
 												break;
 											}
 										}
 									}
 								}
 
-								if ( $found = array_search( $_item[1], $this->imported_data['ads'] ) ) {
-									$placement['item'] = 'ad_' . $found;
-								}
+								$placement['item'] = 'ad_' . $found;
 								break;
 							case Advanced_Ads_Select::GROUP :
-								if ( $found = array_search( $_item[1], $this->imported_data['groups'] ) ) {
-									$placement['item'] = 'group_' . $found;
-								}
+								$found = $this->search_item( $_item[1], Advanced_Ads_Select::GROUP );
+								if ( $found === false ) { break; }
+
+								$placement['item'] = 'group_' . $found;
+								// new placement key => old placement key
+								$this->imported_data['placements'][ $placement_key_uniq ] = $placement_key_uniq;
 								break;
 						}
 					}
@@ -411,6 +416,42 @@ class Advanced_Ads_Import {
 				Advanced_Ads::get_instance()->get_model()->update_ad_placements_array( $updated_placements );
 			}
 		}
+	}
+
+	/**
+	 * Search for ad/group id
+	 *
+	 * @param string $id ad/group id
+	 * @param string $type
+	 * @return
+	 * - int id of the imported ad/group if exists
+	 * - or int id of the existing ad/group if exists
+	 * - or bool false
+	 */
+	private function search_item( $id, $type ) {
+		$found = false;
+
+		switch ( $type ) {
+			case 'ad':
+			case Advanced_Ads_Select::AD :
+				// if the ad was was imported
+				if ( ! $found = array_search( $id, $this->imported_data['ads'] ) ) {
+					// if the ad already exists
+					if ( get_post_type( $id ) === Advanced_Ads::POST_TYPE_SLUG ) {
+						$found = $id;
+					}
+				}
+				break;
+			case Advanced_Ads_Select::GROUP :
+				if ( ! $found = array_search( $id, $this->imported_data['groups'] ) ) {
+					if ( term_exists( absint( $id ), Advanced_Ads::AD_GROUP_TAXONOMY ) ) {
+						$found = $id;
+					}
+				}
+				break;
+		}
+
+		return (int) $found;
 	}
 
 	/**

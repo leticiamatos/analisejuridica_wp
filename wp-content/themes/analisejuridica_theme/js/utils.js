@@ -12,7 +12,7 @@ jQuery(function($) {
 	var destaque_slider = $('.destaque_slider').bxSlider({
 		infiniteLoop: true,
 		pager: false,
-		auto: false,
+		auto: true,
 		video: true,
 		mode: 'fade'
 	});
@@ -38,10 +38,10 @@ jQuery(function($) {
 		speed: 300,
 		infiniteLoop: true,
 		slideMargin: 0,
-		auto: false,
+		auto: true,
 		controls: false,
 		pager: false,
-		pause: 6000,
+		pause: 5000,
 		mode: "fade"
 	});
 
@@ -214,29 +214,40 @@ jQuery(function($) {
 	$('.adv_area a, .adv-area a').each(function(){
 		$(this).attr("target","_blank");
 	})
+	
 	// Home - All post links oppening on a new tab
-	$('body.home prefooter_post-list a, body.home .author-item a.link, body.home .noticias a.link ').each(function(){
-		$(this).attr("target","_blank");
-	})
+	// $('body.home .prefooter_post-list a, body.home .author-item a.link, body.home .noticias a.link, body.home .destaque a.link ').each(function(){
+	// 	$(this).attr("target","_blank");
+	// })
+
+	// $('article.post img').each(function() {
+	// 	height = $(this).height();
+	// 	width = $(this).width();
+	// 	if( height >= width ){
+	// 		$(this).addClass('orienttn_vert_hei-'+height+'_wi-'+width);
+	// 	}else{
+	// 		$(this).addClass('orienttn_hori');
+	// 	}
+	// });
 
 })
 
 // Responsive debugger script
 jQuery(document).ready(function ($) {
 	var MEASUREMENTS_ID = 'measurements'; // abstracted-out for convenience in renaming
-	$("body").append('<div id="'+MEASUREMENTS_ID+'"></div>');
-	$("#"+MEASUREMENTS_ID).css({
-	    'position': 'fixed',
-	    'bottom': '0',
-	    'right': '0',
-	    'background-color': 'black',
-	    'color': 'white',
-	    'padding': '5px',
-	    'font-size': '10px',
-	    'opacity': '0.4',
-	    'font-family': 'Arial, Sans',
-	    'z-index': '100'
-	});
+	// $("body").append('<div id="'+MEASUREMENTS_ID+'"></div>');
+	// $("#"+MEASUREMENTS_ID).css({
+	//     'position': 'fixed',
+	//     'bottom': '0',
+	//     'right': '0',
+	//     'background-color': 'black',
+	//     'color': 'white',
+	//     'padding': '5px',
+	//     'font-size': '10px',
+	//     'opacity': '0.4',
+	//     'font-family': 'Arial, Sans',
+	//     'z-index': '100'
+	// });
 	getDimensions = function(){
 	    return $(window).width() + ' (' + $(document).width() + ') x ' + $(window).height() + ' (' + $(document).height() + ')';
 	}
@@ -256,11 +267,11 @@ jQuery(document).ready(function ($) {
 	}
 	setOrientation();
     
-	$("#"+MEASUREMENTS_ID).text(getDimensions());
-	$(window).on("resize", function(){
-	    $("#"+MEASUREMENTS_ID).text(getDimensions());
-	    setOrientation();
-	});
+	// $("#"+MEASUREMENTS_ID).text(getDimensions());
+	// $(window).on("resize", function(){
+	//     $("#"+MEASUREMENTS_ID).text(getDimensions());
+	//     setOrientation();
+	// });
     
     
  });

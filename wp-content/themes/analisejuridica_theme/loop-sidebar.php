@@ -2,7 +2,7 @@
 	<article id="post-<?php get_the_ID(); ?>" <?php post_class(); ?>>
 		<figure class="post_img">
 			<p class="date">
-				<?php the_date('d/m/Y'); ?>
+				<?php the_time('d/m/Y'); ?>
 			</p>
 				<?php get_template_part('thumbnail'); ?>
 

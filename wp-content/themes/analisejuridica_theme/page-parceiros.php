@@ -33,13 +33,11 @@
 						<div class="sponsorsform_wpr">
 							<h4 class="block_title">Seja um patrocinador</h4>
 							<div class="sponsorsform_cntt sForm">
-								<form>
+								<!--form>
 									<div class="form_div">
-										<!-- <label>Nome:</label> -->
 										<input type="text" class="txt" placeholder="Nome:" />
 									</div>
 									<div class="form_div">
-										<!-- <label>E-mail:</label> -->
 										<input type="text" class="txt" placeholder="E-mail:" />
 									</div>
 									<div class="buttons">
@@ -48,7 +46,8 @@
 										<input type="button" class="btn" value="Enviar" />
 									</div>
 									<span class="clear"></span>
-								</form>
+								</form-->
+								<?php //echo do_shortcode('[contact-form-7 id="1842" title="Sem título"]' );?>
 							</div>
 						</div>
 

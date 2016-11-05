@@ -12,7 +12,7 @@
 			<div class="block_cntt">
 				<div class="col3-4 post-list">
 					<div class="social_wpr">
-						<?php echo do_shortcode('[DISPLAY_ULTIMATE_SOCIAL_ICONS]'); ?> 
+						<?php // echo do_shortcode('[DISPLAY_ULTIMATE_SOCIAL_ICONS]'); ?> 
 						<?php //echo do_shortcode('[DISPLAY_ULTIMATE_PLUS]'); ?>
 					</div>
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

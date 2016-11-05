@@ -181,7 +181,6 @@ class Advanced_Ads_Display_Conditions {
      * @param int $index index of the condition
      */
     static function metabox_post_type($options, $index = 0) {
-
 	if (!isset($options['type']) || '' === $options['type']) {
 	    return;
 	}
@@ -192,25 +191,42 @@ class Advanced_Ads_Display_Conditions {
 	    return;
 	}
 
+	// get values and select operator based on previous settings
+	$operator = ( isset($options['operator']) && $options['operator'] === 'is_not' ) ? 'is_not' : 'is';
+	$values = ( isset($options['value'] ) && is_array( $options['value'] ) ) ? $options['value'] : array();
+
 	// form name basis
 	$name = self::FORM_NAME . '[' . $index . ']';
 
 	// options
-	?><input type="hidden" name="<?php echo $name; ?>[type]" value="<?php echo $options['type']; ?>"/><?php
+	?><input type="hidden" name="<?php echo $name; ?>[type]" value="<?php echo $options['type']; ?>"/>
+	<select name="<?php echo $name; ?>[operator]">
+	    <option value="is" <?php selected('is', $operator); ?>><?php _e('show', 'advanced-ads'); ?></option>
+	    <option value="is_not" <?php selected('is_not', $operator); ?>><?php _e('hide', 'advanced-ads' ); ?></option>
+	</select><?php
+
 	// set defaults
 	$post_types = get_post_types(array('public' => true, 'publicly_queryable' => true), 'object', 'or');
 	?><div class="advads-conditions-single advads-buttonset"><?php
+	$type_label_counts = array_count_values( wp_list_pluck( $post_types, 'label' ) );
+
 	foreach ($post_types as $_type_id => $_type) {
-	    if (isset($options['value']) && is_array($options['value']) && in_array($_type_id, $options['value'])) {
+	    if ( in_array($_type_id, $values)) {
 		$_val = 1;
 	    } else {
 		$_val = 0;
 	    }
+
+	    if ( $type_label_counts[ $_type->label ] < 2 ) {
+		$_label = $_type->label;
+	    } else {
+		$_label = sprintf( '%s (%s)', $_type->label, $_type_id );
+	    }
 	    ?><label class="button" for="advads-conditions-<?php echo $index; ?>-<?php echo $_type_id;
-	    ?>"><?php echo $_type->label; ?></label><input type="checkbox" id="advads-conditions-<?php echo $index; ?>-<?php echo $_type_id; ?>" name="<?php echo $name; ?>[value][]" <?php checked($_val, 1); ?> value="<?php echo $_type_id; ?>"><?php
+	    ?>"><?php echo $_label ?></label><input type="checkbox" id="advads-conditions-<?php echo $index; ?>-<?php echo $_type_id; ?>" name="<?php echo $name; ?>[value][]" <?php checked($_val, 1); ?> value="<?php echo $_type_id; ?>"><?php
 	    }
 	    ?><p class="advads-conditions-not-selected advads-error-message"><?php _ex( 'Please select some items.', 'Error message shown when no display condition term is selected', 'advanced-ads' ); ?></p></div><?php
-	       }
+    }
 
 	       /**
 		* callback to display the metabox for the author condition
@@ -238,14 +254,14 @@ class Advanced_Ads_Display_Conditions {
 		   $name = self::FORM_NAME . '[' . $index . ']';
 		   ?><input type="hidden" name="<?php echo $name; ?>[type]" value="<?php echo $options['type']; ?>"/>
 	<select name="<?php echo $name; ?>[operator]">
-	    <option value="is" <?php selected('is', $operator); ?>><?php _e('show'); ?></option>
-	    <option value="is_not" <?php selected('is_not', $operator); ?>><?php _e('hide'); ?></option>
+	    <option value="is" <?php selected('is', $operator); ?>><?php _e('show', 'advanced-ads'); ?></option>
+	    <option value="is_not" <?php selected('is_not', $operator); ?>><?php _e('hide', 'advanced-ads'); ?></option>
 	</select><?php
 	// set defaults
 	$authors = get_users(array('who' => 'authors', 'orderby' => 'nicename', 'number' => 50));
 		   ?><div class="advads-conditions-single advads-buttonset"><?php
 	foreach ($authors as $_author) {
-	    if (isset($options['value']) && is_array($options['value']) && in_array($_author->ID, $options['value'])) {
+	    if ( in_array($_author->ID, $values ) ) {
 		$_val = 1;
 	    } else {
 		$_val = 0;
@@ -254,7 +270,7 @@ class Advanced_Ads_Display_Conditions {
 	    ?>"><?php echo $_author->display_name; ?></label><input type="checkbox" id="advads-conditions-<?php echo $index; ?>-<?php echo $_author->ID; ?>" name="<?php echo $name; ?>[value][]" <?php checked($_val, 1); ?> value="<?php echo $_author->ID; ?>"><?php
 	}
 	?><p class="advads-conditions-not-selected advads-error-message"><?php _ex( 'Please select some items.', 'Error message shown when no display condition term is selected', 'advanced-ads' ); ?></p></div><?php
-	       }
+    }
 
 	       /**
 		* callback to display the metabox for the taxonomy archive pages
@@ -291,8 +307,8 @@ class Advanced_Ads_Display_Conditions {
 		   $name = self::FORM_NAME . '[' . $index . ']';
 		   ?><input type="hidden" name="<?php echo $name; ?>[type]" value="<?php echo $options['type']; ?>"/>
 	<select name="<?php echo $name; ?>[operator]">
-	    <option value="is" <?php selected('is', $operator); ?>><?php _e('show'); ?></option>
-	    <option value="is_not" <?php selected('is_not', $operator); ?>><?php _e('hide'); ?></option>
+	    <option value="is" <?php selected('is', $operator); ?>><?php _e('show', 'advanced-ads'); ?></option>
+	    <option value="is_not" <?php selected('is_not', $operator); ?>><?php _e('hide', 'advanced-ads'); ?></option>
 	</select><?php
 		   ?><div class="advads-conditions-single advads-buttonset"><?php
 	self::display_term_list($taxonomy, $values, $name . '[value][]', $max_terms, $index);
@@ -366,8 +382,8 @@ class Advanced_Ads_Display_Conditions {
 	$name = self::FORM_NAME . '[' . $index . ']';
 	?><input type="hidden" name="<?php echo $name; ?>[type]" value="<?php echo $options['type']; ?>"/>
 	<select name="<?php echo $name; ?>[operator]">
-	    <option value="is" <?php selected('is', $operator); ?>><?php _e('show'); ?></option>
-	    <option value="is_not" <?php selected('is_not', $operator); ?>><?php _e('hide'); ?></option>
+	    <option value="is" <?php selected('is', $operator); ?>><?php _e('show', 'advanced-ads'); ?></option>
+	    <option value="is_not" <?php selected('is_not', $operator); ?>><?php _e('hide', 'advanced-ads'); ?></option>
 	</select><?php ?><div class="advads-conditions-single advads-buttonset advads-conditions-postid-buttons"><?php
 	// query active post ids
 	if ($values != array()) {
@@ -490,9 +506,14 @@ class Advanced_Ads_Display_Conditions {
 	 * @return bool true if can be displayed
 	 */
 	static function check_post_type($options = array(), Advanced_Ads_Ad $ad) {
-
 	    if (!isset($options['value']) || !is_array($options['value'])) {
 		return false;
+	    }
+
+	    if (isset($options['operator']) && $options['operator'] === 'is_not') {
+		$operator = 'is_not';
+	    } else {
+		$operator = 'is';
 	    }
 
 	    $ad_options = $ad->options();
@@ -500,7 +521,7 @@ class Advanced_Ads_Display_Conditions {
 	    $post = isset($ad_options['post']) ? $ad_options['post'] : null;
 	    $post_type = isset($post['post_type']) ? $post['post_type'] : false;
 
-	    if (self::in_array($post_type, $options['value']) === false) {
+	    if ( ! self::can_display_ids( $post_type, $options['value'], $operator ) ) {
 		return false;
 	    }
 
@@ -629,22 +650,38 @@ class Advanced_Ads_Display_Conditions {
 	 */
 	static function check_post_ids($options = array(), Advanced_Ads_Ad $ad) {
 
-	    if (isset($options['operator']) && $options['operator'] === 'is_not') {
-		$operator = 'is_not';
-	    } else {
-		$operator = 'is';
-	    }
+		if (isset($options['operator']) && $options['operator'] === 'is_not') {
+		    $operator = 'is_not';
+		} else {
+		    $operator = 'is';
+		}
 
-	    $ad_options = $ad->options();
-	    $query = $ad_options['wp_the_query'];
-	    $post_id = isset($ad_options['post']['id']) ? $ad_options['post']['id'] : null;
-		$is_singular = ! empty( $ad_options['wp_the_query']['is_singular'] );
+		$ad_options = $ad->options();
+		$query = $ad_options['wp_the_query'];
+		$post_id = isset($ad_options['post']['id']) ? $ad_options['post']['id'] : null;
+		
+                //fixes page id on BuddyPress pages
+                if ( $post_id == 0 && class_exists( 'BuddyPress' ) && function_exists( 'bp_current_component' )){
+                    $component = bp_current_component();
+                    $bp_pages = get_option( 'bp-pages' );
+                    if ( isset( $bp_pages[$component] ) ){
+                        $post_id = $bp_pages[$component];
+                    } 
+                }
+                
+		if( empty( $ad_options['wp_the_query']['is_singular'] ) ){
+		    if( 'is_not' === $operator ){
+			return true;
+		    } else {
+			return false;
+		    }
+		}
 
-		if ( ! isset( $options['value'] ) || ! is_array( $options['value'] ) || ! $post_id || ! $is_singular ) {
+		if ( ! isset( $options['value'] ) || ! is_array( $options['value'] ) || ! $post_id ) {
 			return true;
 		}
 
-	    return self::can_display_ids($post_id, $options['value'], $operator);
+		return self::can_display_ids($post_id, $options['value'], $operator);
 	}
 
 	/**
@@ -771,6 +808,7 @@ class Advanced_Ads_Display_Conditions {
 	    $conditions = array_values( $options['conditions'] );
 	    $query = $options['wp_the_query'];
 	    $post = isset($options['post']) ? $options['post'] : null;
+
 
 	    $last_result = false;
 	    $length = count( $conditions );

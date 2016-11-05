@@ -259,16 +259,38 @@ class Advanced_Ads_Ad_Ajax_Callbacks {
 	 * @since 1.7.3
 	 */
 	public function inject_placement(){
-	    if ( ! current_user_can( Advanced_Ads_Plugin::user_cap( 'advanced_ads_edit_ads') ) ) {
-		    return;
-	    }
-	    
+		if ( ! current_user_can( Advanced_Ads_Plugin::user_cap( 'advanced_ads_edit_ads') ) ) {
+			die();
+		}
+
+	    $ad_id = absint( $_REQUEST['ad_id'] );
+	    if ( empty( $ad_id ) ) { die(); }
+
+		// use existing placement
+		if ( isset( $_REQUEST['placement_slug'] ) ) {
+			$xml_array[] = '<placements type="array">';
+			$xml_array[] = '<item key="0" type="array">';
+			$xml_array[] = '<item type="string">ad_' . $ad_id . '</item>';
+			$xml_array[] = '<key type="string">' . $_REQUEST['placement_slug'] . '</key>';
+			$xml_array[] = '<use_existing type="boolean">1</use_existing>';
+			$xml_array[] = '</item>';
+			$xml_array[] = '</placements>';
+
+			$xml = '<advads-export>' . implode( '', $xml_array ) . '</advads-export>';
+
+			Advanced_Ads_Import::get_instance()->import( $xml );
+			if ( count( Advanced_Ads_Import::get_instance()->imported_data['placements'] ) ) {
+				// if the ad was assigned
+				echo $_REQUEST['placement_slug'];
+			};
+			die();
+		}
+
+	    // create new placement
 	    $placements = Advanced_Ads::get_instance()->get_model()->get_ad_placements_array();
 
 	    $type = esc_attr( $_REQUEST['placement_type'] );
-	    $ad_id = absint( $_REQUEST['ad_id'] );
-	    if ( empty($ad_id) ) { die(); }
-	    
+
 	    $item = 'ad_' . $ad_id;
 	    
 	    $options = array();

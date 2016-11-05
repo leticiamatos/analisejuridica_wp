@@ -114,6 +114,8 @@ class Advanced_Ads_Model {
 			if ( ! is_array( $this->ad_placements ) ){
 				$this->ad_placements = array();
 			}
+
+			$this->ad_placements = apply_filters( 'advanced-ads-get-ad-placements-array', $this->ad_placements );
 		}
 
 		return $this->ad_placements;

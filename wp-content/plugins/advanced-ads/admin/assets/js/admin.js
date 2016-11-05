@@ -36,34 +36,42 @@ jQuery( document ).ready(function ($) {
 	});
 	
 	// trigger for ad injection after ad creation
-	$( '#advads-ad-injection-box .advads-ad-injection-button' ).click( function(){
-	    var placement_type = this.dataset.type;
-	    if( ! placement_type ){ return; }
-	    var options = {};
-	    // for content injection
-	    if( 'post_content' === placement_type ){
-		var paragraph = prompt( advadstxt.after_paragraph_promt, 1);
-		if ( paragraph !== null ) {
-		    options.index = parseInt( paragraph );
+	$( '#advads-ad-injection-box .advads-ad-injection-button' ).on( 'click', function(){
+		var placement_type = this.dataset.placementType, // create new placement
+			placement_slug = this.dataset.placementSlug, // use existing placement
+			options = {};
+
+		if ( ! placement_type && ! placement_slug ) { return; }
+
+		// create new placement
+		if ( placement_type ) {
+		    // for content injection
+		    if ( 'post_content' === placement_type ) {
+				var paragraph = prompt( advadstxt.after_paragraph_promt, 1);
+				if ( paragraph !== null ) {
+				    options.index = parseInt( paragraph, 10 );
+				}
+		    }
 		}
-	    }
-	    // $( '#advads-ad-injection-box' ).html( '<span class="spinner advads-ad-parameters-spinner advads-spinner"></span>' );
+	    $( '#advads-ad-injection-box .advads-loader' ).show();
+		$( '#advads-ad-injection-box-placements' ).hide();
+	    $( 'body').animate({ scrollTop: $( '#advads-ad-injection-box' ).offset().top -40 }, 1, 'linear' );
+
 	    $.ajax({
 		type: 'POST',
 		url: ajaxurl,
 		data: {
 		    action: 'advads-ad-injection-content',
 		    placement_type: placement_type,
+		    placement_slug: placement_slug,
 		    ad_id: $( '#post_ID' ).val(),
 		    options: options
 		},
 		success: function (r, textStatus, XMLHttpRequest) {
-			if( r ){
-			    $( '#advads-ad-injection-box *' ).hide();
-			    // append anchor to placement message
-			    $( '#advads-ad-injection-message-placement-created a' ).attr( 'href', $( '#advads-ad-injection-message-placement-created a' ).attr( 'href' ) + r );
-			    $( '#advads-ad-injection-message-placement-created, #advads-ad-injection-message-placement-created *' ).show();
-			}
+		    $( '#advads-ad-injection-box *' ).hide();
+		    // append anchor to placement message
+		    $( '#advads-ad-injection-message-placement-created a' ).attr( 'href', $( '#advads-ad-injection-message-placement-created a' ).attr( 'href' ) + r );
+		    $( '#advads-ad-injection-message-placement-created, #advads-ad-injection-message-placement-created *' ).show();
 		},
 		error: function (MLHttpRequest, textStatus, errorThrown) {
 			$( '#advads-ad-injection-box' ).html( errorThrown );
@@ -408,6 +416,8 @@ jQuery( document ).ready(function ($) {
 						'" title="'+ attachment.title +'" alt="'+ attachment.alt +'" src="'+ attachment.url +'"/>';
 					$('#advads-image-preview').html( new_image );
 					$('#advads-image-edit-link').attr( 'href', attachment.editLink );
+					// process "reserve this space" checkbox
+					$( '#advanced-ads-ad-parameters-size input[type=number]:first' ).change();
 				}
 			});
 		});
@@ -714,7 +724,8 @@ function advads_ad_list_build_filters() {
 	advads_ad_list_add_items_to_dropdowns( jQuery( '.advads-ad-size' ), $filter_size );
 	advads_ad_list_add_items_to_dropdowns( jQuery( '.taxonomy-advanced_ads_groups a' ), $filter_group );
 	// if such classes exist on the page - show related <option>s
-	jQuery.each( ['advads-filter-future', 'advads-filter-any-exp-date', 'advads-filter-expired' ], function( i, v ) {
+	jQuery( '#advads-filter-date option:gt(0)' ).each( function() {
+		var v = jQuery( this ).val();
 		if ( $ad_planning_col.hasClass( v ) ) {
 			$filter_date.children( 'option[value="' + v + '"] ' ).show();
 		}

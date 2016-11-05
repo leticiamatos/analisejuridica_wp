@@ -58,7 +58,7 @@ class Advanced_Ads_Plugin {
 		register_deactivation_hook( ADVADS_BASE, array( $this, 'deactivate' ) );
 		register_uninstall_hook( ADVADS_BASE, array( 'Advanced_Ads_Plugin', 'uninstall' ) );
 
-		add_action( 'plugins_loaded', array( $this, 'wp_plugins_loaded' ) );
+		add_action( 'plugins_loaded', array( $this, 'wp_plugins_loaded' ), 10 );
 	}
 
 	/**
@@ -114,6 +114,7 @@ class Advanced_Ads_Plugin {
 		
 		// load display conditions
 		Advanced_Ads_Display_Conditions::get_instance();
+		new Advanced_Ads_Frontend_Checks;
 	}
 
 	/**
@@ -178,6 +179,7 @@ class Advanced_Ads_Plugin {
 	protected function single_activate() {
 		// $this->post_types_rewrite_flush();
 		// -TODO inform modules
+		$this->create_capabilities();
 	}
 
 	/**
@@ -187,6 +189,7 @@ class Advanced_Ads_Plugin {
 	 */
 	protected function single_deactivate() {
 		// -TODO inform modules
+		$this->remove_capabilities();
 	}
 
 	/**
@@ -209,25 +212,20 @@ class Advanced_Ads_Plugin {
 	 *                                       activated on an individual blog.
 	 */
 	public function activate($network_wide) {
-		$this->create_capabilities();
-
-	    return;
-	    // was never used nor missed, but could come in handy one day
-	    
 		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 
 			if ( $network_wide ) {
-
 				// Get all blog ids
-				$blog_ids = $this->model->get_blog_ids();
+				global $wpdb;
+				$blog_ids = $wpdb->get_col( "SELECT blog_id FROM {$wpdb->blogs}" );
+				$original_blog_id = $wpdb->blogid;
 
 				foreach ( $blog_ids as $blog_id ) {
-
 					switch_to_blog( $blog_id );
 					$this->single_activate();
 				}
 
-				restore_current_blog();
+				switch_to_blog( $original_blog_id );
 			} else {
 				$this->single_activate();
 			}
@@ -248,24 +246,20 @@ class Advanced_Ads_Plugin {
 	 * deactivated on an individual blog.
 	 */
 	public function deactivate($network_wide) {
-		$this->remove_capabilities();
-
-	    return;
-
 		if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 
 			if ( $network_wide ) {
-
 				// Get all blog ids
-				$blog_ids = $this->model->get_blog_ids();
+				global $wpdb;
+				$blog_ids = $wpdb->get_col( "SELECT blog_id FROM {$wpdb->blogs}" );
+				$original_blog_id = $wpdb->blogid;
 
 				foreach ( $blog_ids as $blog_id ) {
-
 					switch_to_blog( $blog_id );
 					$this->single_deactivate();
 				}
 
-				restore_current_blog();
+				switch_to_blog( $original_blog_id );
 			} else {
 				$this->single_deactivate();
 			}

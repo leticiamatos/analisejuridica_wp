@@ -378,9 +378,11 @@ input.btn{
 
 // Contact Form style 
 .sForm{
+  position: relative;
+
   .form_div {
     position: relative;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
   }
 
   input.txt,
@@ -400,10 +402,17 @@ input.btn{
     }
   }
   textarea.txt{
-    height: 110px;
+    height: 80px;
   }
 }
 
+// RECaptcha
+.contactform_wpr .g-recaptcha{
+  transform:scale(0.85);
+  -webkit-transform:scale(0.85);
+  transform-origin:0 0;
+  -webkit-transform-origin:0 0;
+}
 // Error Msgs
 .wpcf7-not-valid{
   .txt-error_shadow;
@@ -412,20 +421,39 @@ input.btn{
   display: none !important;
 }
 div.wpcf7-response-output{
+  // clear: both;
+  // display: block;
+  // font-size: 11px;
+  // line-height: 21px;
+  // padding: 10px;
+  // margin: 0 !important;
+  // text-transform: uppercase;
+  // font-weight: bold;
+
   clear: both;
   display: block;
   font-size: 11px;
-  line-height: 21px;
-  padding: 10px;
+  line-height: 15px;
+  padding: 6px 10px;
   margin: 0 !important;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 700;
+  z-index: 20;
+  position: absolute;
+  width: 90%;
+  float: right;
+  bottom: 5%;
+  right: 5%;
 }
 div.wpcf7-mail-sent-ok{
   border: 2px solid @cGreen;
+  background: #fff;
+  .shadow-menu;
 }
 div.wpcf7-validation-errors{
   border: 2px solid @cRed;
+  background: #fff;
+  .shadow-menu;
 }
 img.ajax-loader {
   position: absolute;
@@ -671,7 +699,7 @@ img.ajax-loader {
     }
   }
 
-
+@wLogo: 300px;
 body{
   .block_header h1.logo{
     display: block;
@@ -680,7 +708,7 @@ body{
     .transition;
 
     img{
-      max-width: 250px;
+      max-width: @wLogo;
       .transition;
     }
   }
@@ -690,9 +718,9 @@ body{
       .transition;
     }    
     h1.logo{
-      width: 250px;
+      width: @wLogo;
       img{
-        width: 250px;
+        width: @wLogo;
       }
     }
   }
@@ -759,11 +787,11 @@ body{
 
   }
 }
-.adv4{
-  margin-top: 55px;
-}
+.adv4,
 .adv8{
-  margin-top: 45px;
+  .adv-cntt {
+    padding-top: @wHomePaTop;
+  }
 }
 .adv10{
   margin-top: 50px;
@@ -784,7 +812,8 @@ section.block_01{
   .radius5left;
 
   .video_cntt{
-    height: 475px;
+    // height: 475px;
+    height: 100%;
     iframe{
       width: 100%;
       height: 100%;
@@ -1025,10 +1054,11 @@ article .post-categories{
   }
 }
 
+@wHomePaTop: 35px;
 // Colunistas
 section.colunistas,
 section.debates{
-  padding-top: 15px;
+  padding-top: @wHomePaTop;
   .col3-4{
     padding-right: 20px;
   }
@@ -1158,7 +1188,7 @@ section.debates{
 
 // Notícias
 section.noticias{
-  padding-top: 25px;
+  padding-top: @wHomePaTop;
   li.col1-4{
     article {
       margin: 0 10px;
@@ -1182,7 +1212,12 @@ section.noticias{
       height: auto; 
       .image_crop img { 
         height: 285px ;
+        &.orienttn_vert {
+          width: 100%;
+          height: auto;
+        }
       }
+
 
     }
     .gradient_bg{
@@ -1227,7 +1262,7 @@ section.noticias{
 }
 
 section.videos{
-  margin-top: 35px;
+  margin-top: @wHomePaTop;
 }
 
 .sidebar{
@@ -1338,6 +1373,9 @@ section.videos{
         .image_crop img { 
           height: 70px ;
         }
+      }
+      .text{
+        padding-left: 115px;
       }
       .title{
         .postlist_title;
@@ -1480,7 +1518,7 @@ body.single {
       position: absolute;
       top: 0;
       right: 0;
-      width: 130px;
+      width: 90px;
     }
   }
 }
@@ -1616,6 +1654,10 @@ body.search{
           font-size: 15px;
           color: @cGray;
         }
+        .text{
+          padding-left: 27%;
+          margin-left: 40px;
+        }
       }
     }
   }
@@ -1738,10 +1780,20 @@ body.single{
       right: 20px;
       top: 12px;
     }
-    .sfsi_widget{
+    // Ultimate Social Icons Share
+    // .sfsi_widget{
+    //   position: absolute;
+    //   width: 100%;
+    //   right: 0;
+    // }
+    .addtoany_shortcode {
+      right: 12px;
+      top: 12px;
+      text-align: right;
       position: absolute;
-      width: 100%;
-      right: 0;
+    }
+    .a2a_button_whatsapp{
+      display: none;
     }
   }
   .post-list{
@@ -1788,6 +1840,13 @@ body.single{
       padding-bottom: 10px;
       // text-indent: 20px;
     }
+  }
+  .thumb_descptn{
+    clear: both;
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    padding-top: 5px;
   }
   .tags_wpr{
     padding-top: 30px;
@@ -2028,3 +2087,9 @@ img{max-width: 100%;}
 .loading.active { z-index: 60;}
 .fixed {z-index: 90;}
 .block_cntt{  z-index: 1;}
+
+
+// FAle conosco:
+body.fale-conosco{
+  a{ font-size: 14px;}
+}

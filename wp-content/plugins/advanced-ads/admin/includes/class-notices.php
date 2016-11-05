@@ -126,18 +126,6 @@ class Advanced_Ads_Admin_Notices {
 		}
 		
 		if ( isset($internal_options['version']) && ($internal_options['version'] !== ADVADS_VERSION) && $old_version ) {
-			if ( version_compare( $old_version, '1.4.5' ) == -1 ) {
-				$this->notices[] = '1.4.5';
-			}
-			if ( version_compare( $old_version, '1.5.4' ) == -1 ) {
-				$this->notices[] = '1.5.4';
-			}
-			if ( version_compare( $old_version, '1.6' ) == -1 ) {
-				$this->notices[] = '1.6';
-			}
-			if ( version_compare( $old_version, '1.6.6' ) == -1 ) {
-				$this->notices[] = '1.6.6';
-			}
 			if ( version_compare( $old_version, '1.7' ) == -1 ) {
 				$this->notices[] = '1.7';
 			}

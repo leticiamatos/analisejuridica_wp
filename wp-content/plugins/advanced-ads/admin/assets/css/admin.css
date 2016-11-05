@@ -25,6 +25,10 @@
 */
 .ad_details img { float: left; margin-right: 10px; }
 .ad_details img + p { float: left; }
+.post-type-advanced_ads .subsubsub .draft a { background-color: #FCE7C0; }
+.post-type-advanced_ads .subsubsub .pending a { background-color: #FFDEDE; }
+.post-type-advanced_ads .wp-list-table .status-draft { background-color: #FCE7C0; }
+.post-type-advanced_ads .wp-list-table .status-pending { background-color: #FFDEDE; }
 
 /**
 * AD EDIT PAGE
@@ -35,14 +39,18 @@ h2.hndle .advads-hndlelinks a + a { margin-left: 1em; }
 .advads-video-link-container { text-align: center; }
 .advads-ad-metabox { position: relative; top: 0; left: 0; padding: 3em; background: #fff; }
 .advads-ad-metabox h2 { font-weight: bold; color: #0074a2; font-size: 1.6em; margin: 0 0 2em; }
+
 #advads-ad-injection-box hr { clear: both; }
 #advads-ad-injection-box div pre input { width: 30em; }
 #advads-ad-injection-box .ui-accordion .ui-accordion-header { margin-top: 0; border-radius: 0; }
 #advads-ad-injection-box .ui-accordion .ui-accordion-content { border-radius: 0; }
-#advads-ad-injection-box .button-primary { float: left; margin-right: 10px; padding: 10px; width: 140px; height: 105px; background-size: 140px 105px; font-size: 2em; text-indent: -9999px; border: solid 1px #0085ba;  }
+#advads-ad-injection-box .advads-ad-injection-box-button-wrap { width: 100px; float: left; margin-right: 10px; margin-bottom: 10px; padding: 1px; text-align: center; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+#advads-ad-injection-box .button-primary { display: block; margin-bottom: 10px; padding: 0px; width: 100%; height: 75px; background-size: 100px 75px; font-size: 1.5em; text-indent: -9999px; border: solid 1px #0085ba; }
 #advads-ad-injection-box .button-primary { box-shadow: 0px 0px 2px #0085ba; }
 #advads-ad-injection-box button:hover { background: #0085ba !important; color: #fff; text-indent: 0; white-space: normal; cursor: pointer; }
 #advads-ad-injection-box input[type="number"] { width: 4em; }
+
+
 #advads-ad-injection-shortcode { width: 130px; border: none; background: #ededed; }
 #advads-ad-injection-message-placement-created { font-size: 1.5em; }
 .advads-pro-link { opacity: 0.5; }
@@ -185,11 +193,12 @@ fieldset.advads-group-add-ad { margin-top: 1em; }
  AD PLACEMENTS
 */
 .advads-placement-description { display: none; }
-.advads-placements-new-form .advads-placement-type { position: relative; top: 0; left: 0; float: left; }
+.advads-placements-new-form .advads-placement-type { position: relative; top: 0; left: 0; float: left; width: 140px; margin: 15px 0 0 15px; }
 .advads-placements-new-form .advads-placement-type .ui-button { background: none; border-radius: 0; height: auto; }
-.advads-placements-new-form .advads-placement-type .ui-button-text { padding: 0; width: 140px; height: 105px; border: solid 1px #0085ba; border-radius: 3px; box-shadow: 0px 0px 2px #0085ba; overflow: hidden; }
+.advads-placements-new-form .advads-placement-type .ui-button-text { padding: 0; width: 140px; height: 105px; border: solid 1px #0085ba; border-radius: 3px; box-shadow: 0px 0px 2px #0085ba; overflow: hidden; box-sizing: border-box; }
 .advads-placements-new-form .advads-placement-type .ui-button-text img { max-width: 100%; pointer-events: none; }
-.advads-placements-new-form .advads-placement-type label { display: inline-block; width: 140px; text-align: center; border: 0; padding: 10px; }
+.advads-placements-new-form .advads-placement-type label { display: inline-block; width: 140px; text-align: center; border: 0; padding: 0; }
+.advads-placements-new-form .advads-buttonset .ui-button.ui-state-active { outline: 8px solid #2ea2cc; }
 .advads-placements-new-form .advads-placement-type label .description { padding: 10px; }
 .advads-placements-new-form .advads-error-message { display: none; }
 .advads-placements-table { min-width: 80%; border-collapse: collapse; background: #fff; }
