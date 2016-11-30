@@ -403,6 +403,9 @@ input.btn{
   }
   textarea.txt{
     height: 80px;
+    text-indent: 0;
+    padding: 5px 10px;
+    line-height: 18px/
   }
 }
 
@@ -1522,6 +1525,25 @@ body.single {
     }
   }
 }
+body.fale-conosco{
+  .text .gap{
+    height: 40px;
+  }
+  main .contactform_wpr {
+    margin-top: 0;
+
+    .buttons{
+      min-height: 120px;
+
+      .btn{
+        width: 102px;
+      }
+    }
+  }
+  .facebook_page{
+    padding-top: 35px;
+  }
+}
 
 // Footer
 footer{
@@ -1936,6 +1958,7 @@ body.patrocinadores article{
   }
 } 
 
+body.anuncie,
 body.parceiros,
 body.patrocinadores{
   .sponsorsform_wpr{
@@ -1953,16 +1976,20 @@ body.patrocinadores{
     .buttons{
       float: left;
     }
-    .form_div{
-      width: 43%;
-      padding-right: 10px;
+    .form_div,
+    .buttons{
+      width: 100%;
+      max-width: 313px;
+      clear: both;
+      position: relative;
     }
     input.txt{
       height: 40px;
     }
-    .buttons{
-      width: 14%;
-      text-align: right;
+    .buttons .btn{
+      position: absolute;
+      right: 0;
+      top: 0;
     }
   }
 }
@@ -2089,7 +2116,7 @@ img{max-width: 100%;}
 .block_cntt{  z-index: 1;}
 
 
-// FAle conosco:
+// Fale conosco
 body.fale-conosco{
   a{ font-size: 14px;}
 }

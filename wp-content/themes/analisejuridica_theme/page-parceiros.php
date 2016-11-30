@@ -33,21 +33,21 @@
 						<div class="sponsorsform_wpr">
 							<h4 class="block_title">Seja um patrocinador</h4>
 							<div class="sponsorsform_cntt sForm">
-								<!--form>
-									<div class="form_div">
-										<input type="text" class="txt" placeholder="Nome:" />
-									</div>
-									<div class="form_div">
-										<input type="text" class="txt" placeholder="E-mail:" />
-									</div>
-									<div class="buttons">
-										<div class="captcha">		
-										</div>
-										<input type="button" class="btn" value="Enviar" />
-									</div>
-									<span class="clear"></span>
-								</form-->
-								<?php //echo do_shortcode('[contact-form-7 id="1842" title="Sem título"]' );?>
+<!--form>
+<div class="form_div">
+	<input type="text" class="txt" placeholder="Nome:" />
+</div>
+<div class="form_div">
+	<input type="text" class="txt" placeholder="E-mail:" />
+</div>
+<div class="buttons">
+	<div class="captcha">		
+	</div>
+	<input type="button" class="btn" value="Enviar" />
+</div>
+<span class="clear"></span>
+</form-->
+								<?php echo do_shortcode('[contact-form-7 id="3675" title="Parceiros"]' );?>
 							</div>
 						</div>
 
